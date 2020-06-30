@@ -1,0 +1,8 @@
+.home-panels a {
+  text-decoration: none;
+}
+.home-panels .recipie-card-container__text-title h2 {
+  margin: 0;
+  font-weight: 600;
+  color: black;
+}

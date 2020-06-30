@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './Components/Header/Header';
+import RecipeCard from './Components/RecipieCard/RecipieCard';
+import RecipeCardDetails from './Components/RecipeCardDetails/RecipeCardDetails';
+import Home from './Components/Home/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+
+const App = () => {
+const [showSearch, setShowSearch] = useState(false);
+  
+  const showInput = () => {
+    setShowSearch(!showSearch);
+  }
+  
+
+
+    return(
+      <Router>
+        <div className="App">
+
+          <Header clicked={showInput} state={showSearch}/>
+          <Route path="/" exact component={Home} />
+          <Route path="/:type" exact component={RecipeCard} />
+          <Route path="/:index" component={RecipeCardDetails} />
+        
+        </div> 
+      </Router>
+  )
 }
 
 export default App;

@@ -1,0 +1,66 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 999;
+    &-container {
+        box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        
+        &-main {
+            &-location {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+               
+
+                h3 {
+                    margin: 0;
+                    font-family: 800;
+                    font-family: 'Quicksand';
+                    font-size: 22px;
+
+                    a {
+                        color: black;
+                        text-decoration: none;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+        &-main-input {
+            display: none;
+            transition-property: all!important;
+            transition-duration: 2s!important;
+            position: relative!important;
+            top: -110px;
+            input{
+                display: none;
+            }
+        }
+    }
+}
+
+.active{
+
+    .list {
+       height: 50vh;
+        overflow: auto;
+    }
+
+    input{
+        display: block;
+        outline-style: none;
+        background: #fff;
+        border-style: none;
+        // border: 1px solid rgba(0 ,0, 0, 0.2);
+        width: 100%;
+        padding-bottom: 10px;
+        // border-radius: 15px 15px 0 0;
+        color: black;
+        margin-top: 20px;
+        font-weight: 500;
+        font-family: 'Quicksand';
+    }
+}
