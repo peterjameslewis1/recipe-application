@@ -1,9 +1,11 @@
+@import './Components/SignUp/SignUp.css';
 @import './Components/Header/Header.css';
 @import './Components/RecipieCard/RecipieCard.css';
 @import './Components/autoComplete/autoComplete.css';
 @import './Components/RecipeCardDetails/RecipeCardDetails.css';
 @import './Components/Home/Home.css';
-@import './Components//RecipeCardDetails/RecipeCardDetails.css'
+@import './Components//RecipeCardDetails/RecipeCardDetails.css';
+
 
 
 body {

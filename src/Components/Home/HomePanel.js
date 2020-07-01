@@ -6,7 +6,7 @@ const HomePanel = (props) => {
 
 
     return (
-        <Link to={`/${props.title}`}>
+        <Link to={`/recipe-app/home/${props.title}`}>
             <div className="recipes panel-recipes">
                 <div className="recipie-card">
                     <div className="recipie-card-container">

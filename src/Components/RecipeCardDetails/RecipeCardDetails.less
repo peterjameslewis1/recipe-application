@@ -1,19 +1,59 @@
 .recipe-card {
-    position: relative;
+    position: absolute;
     top: 70px;
     padding: 20px;
     text-align: left;
 
     &-container {
-
-        
-
-
+        position: relative;
 
 
         &__title {
+            h2 {
+                font-size: 28px;
+                margin: 0px 0 20px 0;
+            }
+        }
+    
+
+
+        &__img {
+            position: relative;
+
             img {
                 width: 100%;
+                border-radius: 10px;
+            }
+
+            a {
+                background: rgba(0, 0, 0, 0.8);
+                padding: 15px 0;
+                width: 100%;
+                border-radius: 0 0 10px 10px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                color: white;
+                text-align: center;
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+
+
+        &__ingredients {
+            p {
+                font-weight: 700;
+            }
+
+            ul {
+                list-style: decimal;
+                padding-left: 30px;
+                font-weight: 500;
+
+                li {
+                    margin-bottom: 10px;
+                }
             }
         }
     }

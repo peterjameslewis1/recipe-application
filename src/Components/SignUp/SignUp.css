@@ -1,0 +1,59 @@
+.background-img {
+  background: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/a-guide-to-cooped-up-cooking-1585331788.jpg?crop=0.826xw:0.826xh;0.0881xw,0&resize=768:*');
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.background-img .sign-up {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 50px;
+}
+.background-img .sign-up h1 {
+  color: white;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 60px;
+}
+.background-img .sign-up-box {
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  color: black;
+  width: 100%;
+  padding: 50px 0;
+}
+.background-img .sign-up-box h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+.background-img .sign-up-box p {
+  font-weight: 500;
+}
+.background-img .sign-up-box form input {
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  padding: 5px;
+}
+.background-img .sign-up a {
+  display: block;
+  margin: 20px;
+  width: 100%;
+  background: white;
+  padding: 10px 0;
+  color: white;
+  border: none;
+}
+.background-img .sign-up a:hover {
+  background-color: #f2f2f2;
+}
+.background-img .sign-up a button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+}

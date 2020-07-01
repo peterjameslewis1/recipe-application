@@ -3,11 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 const RecipeCardDetails = (match) => {
     const [recipe, setRecipe] = useState([]);
-
-    console.log(match)
-
-    // function createMarkup() { return {__html: (props.summary, props.instructions)}; };
-
     const hash = match.location.hash.slice(1)
 
     const pathName = `https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23${hash}`
@@ -21,35 +16,35 @@ const RecipeCardDetails = (match) => {
         const apiKey = 'bd44e3839f3e7ae8efc4d7ec57ca1e03';
         const appId = '0e146f59';
         
-        
         fetch(`https://cors-anywhere.herokuapp.com/${pathName}&app_key=${apiKey}&app_id=${appId}`)
-          .then(res => res.json())
-          .then(data => setRecipe(data));
-          
+        .then(res => res.json())
+        .then(data => setRecipe(data));
     };
-    console.log(recipe[0])
-    
-    console.log(pathName)
+
+    console.log(recipe)
+
     
     return (
         <div>
-        {recipe.map(data => {
-            console.log(data.label)
-
+        {recipe.map((data, index) => {
             return (
-                <div className="recipe-card">
+                <div key={index} className="recipe-card">
                     <div className="recipe-card-container">
-                        <div className="recipe-card-container__url">
-                            <a href={data.url}>View full recipe</a>
-                        </div>
+                        {/* <div className="recipe-card-container__back-btn">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </div> */}
 
                         <div className="recipe-card-container__title">
-                            <img src={data.image} alt="" />
                             <h2>{data.label}</h2>
+                            <p><strong>Feeds</strong>: {data.yield}</p>
+                        </div>
+                        <div className="recipe-card-container__img">
+                            <img src={data.image} alt="" />
+                            <a href={data.url}>View full recipe</a>
                         </div>
         
                         <div className="recipe-card-container__ingredients">
-                            <p>Ingredients</p>
+                            <h3>Ingredients:</h3>
                             <ul>
                                 {data.ingredients.map((data, index) => {
                                     return <li key={index}><span>{data.text}</span><span>{data.weight}</span></li>
@@ -59,18 +54,24 @@ const RecipeCardDetails = (match) => {
 
 
                         <div className="recipe-card-container__info">
+                            <h3>Recipe health information:</h3>
                             <ul>
-                                {data.healthLabels.map(data => {
-                                    return <li>{data}</li>
+                                {data.healthLabels.map((data, index) => {
+                                    return <li key={index}>{data}</li>
                                 })}
                             </ul>
                             <ul>
-                                {data.dietLabels.map(data => {
-                                    return <li>{data}</li>
+                                {data.dietLabels.map((data, index) => {
+                                    return <li key={index}>{data}</li>
                                 })}
                             </ul>
-                            <p>Feeds: {data.yield}</p>
-                            <p>{data.totalWeight}</p>
+                            
+                            <h3>Cautions</h3>
+                            <ul>
+                                {data.cautions.map((data, index) => {
+                                    return <li key={index}>{data}</li>
+                                })}
+                            </ul>
                         </div>
                     </div>
                 </div>

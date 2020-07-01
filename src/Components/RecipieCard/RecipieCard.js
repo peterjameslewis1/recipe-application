@@ -13,30 +13,26 @@ const Card = (match) => {
     }, [recipeType])
 
 
-
+    // Initial fetch call
     const fetchMoreData = (query) => {
-        // a fake async api call like which sends
-        // 20 more records in 1.5 secs
         const apiKey = 'bd44e3839f3e7ae8efc4d7ec57ca1e03';
         const appId = '0e146f59';
         
         fetch(`https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${query}&app_key=${apiKey}&app_id=${appId}&from=0&to=${perPage}`)
         .then(res => res.json())
         .then(data => setRecipeData([...recipeData, ...data.hits]));
-        console.log(recipeData)
     };
 
+
+    // function to fetch +10 more items of data on from API on onClick
     const loadMore = () => {
         setPerPage(recipeData.length + 10)
         fetchMoreData()
     }
-    console.log(recipeData)
     
      
     return ( 
-
-        <div>
-            
+        <div className="results">
            {recipeData.map((data, index) => {
                return (
                 <Link to={`/${data.recipe.uri}`}>
@@ -53,7 +49,6 @@ const Card = (match) => {
                                         <h4>{data.recipe.label}</h4>
                                     </div>
                                     <div className="recipie-card-container__text-time">
-                                        <p>ready in</p>
                                         <span>{data.recipe.totalTime}m</span>
                                     </div>
                                 </div>
@@ -63,8 +58,7 @@ const Card = (match) => {
                 </Link>
             )})
            }
-
-            <a onClick={loadMore} className="load-more">Load More</a>
+            <a onClick={loadMore} className="load-more" href="#">Load More</a>
         </div>
     )
 }
