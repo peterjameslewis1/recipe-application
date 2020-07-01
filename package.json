@@ -1,6 +1,6 @@
 {
-  "homepage": "https://peterjameslewis1.github.io/recipie-app",
-  "name": "recipie-app",
+  "homepage": "https://peterjameslewis1.github.io/recipeasy",
+  "name": "recipeasy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

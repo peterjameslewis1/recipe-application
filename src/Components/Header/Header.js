@@ -15,14 +15,14 @@ const Header = (props) => {
                 <div className="header-container-main">
                     <div className="header-container-main-location">
                         <div className="menu"><i class="fas fa-bars"></i></div>
-                       
+
                         <h3><Link to="/recipe-app"><i class="fas fa-home"></i></Link></h3>
-                       
+
                         <div onClick={props.clicked} className="search"><i class="fas fa-search"></i></div>
-                        </div>
+                    </div>
                 </div>
 
-                <div className={ props.state ? 'active' : "header-container-main-input"}>
+                <div className={props.state ? 'active' : "header-container-main-input"}>
                     {/* <input type="text" Placeholder="Search..."/> */}
                     <AutoComplete />
                 </div>

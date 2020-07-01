@@ -12,7 +12,7 @@ const HomePanel = (props) => {
                     <div className="recipie-card-container">
 
                         <div className="recipie-card-container__img">
-                        <img alt="" src={props.img} />
+                            <img alt="" src={props.img} />
                         </div>
 
                         <div className="recipie-card-container__text">

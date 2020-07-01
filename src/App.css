@@ -4,7 +4,6 @@
 @import './Components/autoComplete/autoComplete.css';
 @import './Components/RecipeCardDetails/RecipeCardDetails.css';
 @import './Components/Home/Home.css';
-@import './Components//RecipeCardDetails/RecipeCardDetails.css';
 
 
 
@@ -17,8 +16,6 @@ body {
   font-family: 'Quicksand';
   background: #fcf4ec;
 
-  
-  
+
+
 }
-
-

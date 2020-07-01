@@ -27,9 +27,9 @@
 }
 .header-container-main-input {
   display: none;
-  transition-property: all!important;
-  transition-duration: 2s!important;
-  position: relative!important;
+  transition-property: all !important;
+  transition-duration: 2s !important;
+  position: relative !important;
   top: -110px;
 }
 .header-container-main-input input {

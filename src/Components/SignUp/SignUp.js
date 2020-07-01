@@ -9,7 +9,7 @@ const SignUp = () => {
         setUsername(e.target.value)
         console.log(username)
     }
-    
+
 
     return (
         <div className="background-img">
@@ -18,8 +18,8 @@ const SignUp = () => {
                 <div className="sign-up-box">
                     <h2>Sign up</h2>
                     <form>
-                        <input type="text" className="username" value={username} onChange={userHandler}/>
-                        { username > 6 ? <p>Valid username</p> : <p>Greater than 6 characters</p>}
+                        <input type="text" className="username" value={username} onChange={userHandler} />
+                        {username > 6 ? <p>Valid username</p> : <p>Greater than 6 characters</p>}
                         <input type="text" className="password" />
                         {/* <button type="submit" /> */}
                     </form>

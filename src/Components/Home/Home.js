@@ -10,10 +10,10 @@ const Home = () => {
 
     return (
         <div className="home-panels">
-            <Panel img={ImgVegetarian} title="Vegetarian"/>
-            <Panel img={ImgSpicy} title="Spicy"/>
-            <Panel img={ImgMeat} title="Meaty"/>
-            <Panel img={ImgDessert} title="Dessert"/>
+            <Panel img={ImgVegetarian} title="Vegetarian" />
+            <Panel img={ImgSpicy} title="Spicy" />
+            <Panel img={ImgMeat} title="Meaty" />
+            <Panel img={ImgDessert} title="Dessert" />
         </div>
     )
 }

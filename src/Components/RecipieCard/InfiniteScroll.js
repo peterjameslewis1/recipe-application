@@ -15,20 +15,20 @@ class App extends React.Component {
   };
 
 
-  componentWillMount(){
-      this.fetchMoreData()
+  componentWillMount() {
+    this.fetchMoreData()
   }
- 
+
   fetchMoreData = () => {
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
     const apiKey = 'bd44e3839f3e7ae8efc4d7ec57ca1e03';
     const appId = '0e146f59';
-    
+
 
     fetch(`https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=Vegetarian&app_key=${apiKey}&app_id=${appId}`)
       .then(res => res.json())
-      .then(data => this.setState({data: data}));
+      .then(data => this.setState({ data: data }));
 
     setTimeout(() => {
       this.setState({
