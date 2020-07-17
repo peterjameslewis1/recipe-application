@@ -16,7 +16,7 @@ const Header = (props) => {
                     <div className="header-container-main-location">
                         <div className="menu"><i class="fas fa-bars"></i></div>
 
-                        <h3><Link to="/recipe-app"><i class="fas fa-home"></i></Link></h3>
+                        <h3><Link to="/"><i class="fas fa-home"></i></Link></h3>
 
                         <div onClick={props.clicked} className="search"><i class="fas fa-search"></i></div>
                     </div>

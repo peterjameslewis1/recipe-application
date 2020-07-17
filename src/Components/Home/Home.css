@@ -1,8 +1,44 @@
-.home-panels a {
+.home-panels {
+  margin-top: 59px;
+}
+.home-panels .results {
+  top: 0;
+}
+.home-panels .results a {
   text-decoration: none;
 }
-.home-panels .recipie-card-container__text-title h2 {
+.home-panels .results a .panel-recipes .recipie-card {
+  margin: 0;
+}
+.home-panels .results a .panel-recipes .recipie-card-container {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+  border-radius: none;
+}
+.home-panels .results a .panel-recipes .recipie-card-container img {
+  border-radius: 0;
+  width: 100%;
+  display: block;
+}
+.home-panels .results a .panel-recipes .recipie-card-container__text {
+  height: 100% !important;
+  width: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.home-panels .results a .panel-recipes .recipie-card-container__text-title {
+  flex: 0;
+}
+.home-panels .results a .panel-recipes .recipie-card-container__text-title h2 {
   margin: 0;
   font-weight: 600;
-  color: black;
+  color: white;
+  text-transform: capitalize;
 }

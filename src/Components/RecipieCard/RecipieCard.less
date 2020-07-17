@@ -15,9 +15,11 @@
                 flex-direction: column;
                 align-items: center;
                 width: 90%;
+
                 margin: 10px auto;
                 box-shadow: 0 1px 8px 0px rgba(0, 0, 0, 0.3);
                 border-radius: 10px;
+                background-color: white;
 
                 &__img {
 
@@ -31,7 +33,7 @@
                 &__text {
                     width: 90%;
                     display: flex;
-                    padding: 20px;
+                    flex-direction: column-reverse;
                     justify-content: space-between;
                     font-weight: 500;
                     text-align: left;
@@ -50,7 +52,7 @@
                         flex: 0 1 30%;
                         flex-direction: column;
                         justify-content: space-between;
-                        text-align: center;
+
 
                         p {
                             font-size: 14px;
@@ -65,28 +67,61 @@
                 }
             }
         }
-
-        .load-more {
-            display: block;
-            padding: 20px 0;
-            color: black;
-            font-weight: 500;
-        }
     }
 
-    @media screen and (min-width:350px) {
+    .load-more {
+        background: white;
+        margin: 0;
+        padding: 20px;
+        font-weight: 500;
+        font-size: 18px;
+        display: block;
+        margin-top: 20px;
+    }
+
+    @media screen and (max-width:350px) {
         display: flex;
         flex-wrap: wrap;
+        top: 70px;
 
 
 
         a {
             flex: 1 1 40%;
-            margin: 10px;
 
             .recipes {
                 .recipie-card {
                     margin-top: 0;
+
+                    &-container {
+                        &__text {
+                            flex-direction: column-reverse;
+                            padding: 10px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width:768px) {
+        display: flex;
+        flex-wrap: wrap;
+        top: 50px;
+
+
+
+        a {
+            flex: 1 1 40%;
+
+            .recipes {
+                .recipie-card {
+                    margin-top: 0;
+
+                    &-container {
+                        height: 330px;
+                    }
                 }
             }
         }

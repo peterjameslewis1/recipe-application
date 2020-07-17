@@ -23,9 +23,9 @@ const App = () => {
       <div className="App">
 
         <Header clicked={showInput} state={showSearch} />
-        <Route path="/recipe-app" exact component={SignUp} />
-        <Route path="/recipe-app/home" exact component={Home} />
-        <Route path="/recipe-app/home/:type" component={RecipeCard} />
+        <Route path="/" exact component={SignUp} />
+        <Route path="/home" exact component={Home} />
+        <Route path="/home/:type" component={RecipeCard} />
         <Route path="/:index" component={RecipeCardDetails} />
 
       </div>
