@@ -8,9 +8,11 @@ const Card = (match) => {
     const apiKey = 'bd44e3839f3e7ae8efc4d7ec57ca1e03';
     const appId = '0e146f59';
 
+
     useEffect(() => {
         fetchMoreData(recipeType)
     }, [recipeType])
+
 
 
     // Initial fetch call
@@ -30,12 +32,27 @@ const Card = (match) => {
         fetchMoreData()
     }
 
+    console.log(recipeData)
+    // console.log('/recipe-app')
+    // console.log('/home')
+    // console.log(`/${recipeType}`)
+    // console.log(`sdfsef7873948##r5`)
 
     return (
         <div className="results">
+
+            <Link to="/recipe-app/home" className="back-btn">
+                <div><i class="fas fa-chevron-left"></i>Back</div>
+            </Link>
             {recipeData.map((data, index) => {
                 return (
-                    <Link to={`/${data.recipe.uri}`}>
+                    <Link
+                        to={{
+                            pathname: `/${data.recipe.uri}`,
+                            query: { back: recipeType }
+                        }}
+                        className="recipe-card-link">
+
                         <div className="recipes" key={index}>
                             <div className="recipie-card">
                                 <div className="recipie-card-container">

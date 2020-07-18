@@ -7,15 +7,36 @@
 
 
 
-body {
+/* body {
   background: #fcf4ec;
-}
+} */
 
 .App {
   text-align: center;
   font-family: 'Quicksand';
-  background: #fcf4ec;
+  background: white;
+}
 
+.App .back-btn {
+  position: fixed;
+  top: 58px;
+  z-index: 99;
+  text-align: center;
+  left: 0;
+  background: linear-gradient(180deg, #000000, #000000bd);
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+}
 
+.App .back-btn div {
+  padding: 15px 0;
+  font-size: 20px;
+}
 
+.App .back-btn div i {
+  margin-right: 5px;
 }

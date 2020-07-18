@@ -3,6 +3,8 @@
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+  z-index: 999;
+  position: relative;
 }
 .background-img .sign-up {
   height: 100vh;

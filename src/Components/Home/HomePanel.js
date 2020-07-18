@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom'
 
 const HomePanel = (props) => {
 
-
     return (
         <div className="results">
-
-            <Link to={`/home/${props.title}`}>
+            <Link to={`/recipe-app/home/${props.title}`}>
                 <div className="recipes panel-recipes">
                     <div className="recipie-card">
                         <div className="recipie-card-container">

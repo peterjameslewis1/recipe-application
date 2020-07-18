@@ -1,5 +1,8 @@
 .home-panels {
-    margin-top: 59px;
+    position: relative;
+    top: 59px;
+
+
 
     .results {
         top: 0;
@@ -18,10 +21,15 @@
                         border-radius: none;
 
 
-                        img {
-                            border-radius: 0;
+                        &__img {
                             width: 100%;
                             display: block;
+                            overflow: hidden;
+
+                            img {
+                                border-radius: none !important;
+                                width: 100%;
+                            }
                         }
 
 

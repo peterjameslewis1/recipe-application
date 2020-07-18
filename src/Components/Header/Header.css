@@ -16,14 +16,14 @@
 }
 .header-container-main-location h3 {
   margin: 0;
-  font-family: 800;
-  font-family: 'Quicksand';
-  font-size: 22px;
+  font-family: 'Lora';
 }
 .header-container-main-location h3 a {
   color: black;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 24px;
 }
 .header-container-main-input {
   display: none;

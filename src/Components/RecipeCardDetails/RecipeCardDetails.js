@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom'
 
 const RecipeCardDetails = (match) => {
     const [recipe, setRecipe] = useState([]);
-    const hash = match.location.hash.slice(1)
+    // const hash = match.location.hash.slice(1)
+    const uri = match.location.pathname.split('#')[1];
+    const hash = uri;
+
+    console.log(uri)
+
+    // console.log(match.location.query.back)
 
     const pathName = `https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23${hash}`
+    // const pathName = `https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%${hash}`
 
     useEffect(() => {
         fetchData(pathName)
     }, [pathName])
+
+    console.log(recipe)
+    console.log(match)
 
 
     const fetchData = (pathName) => {
@@ -19,20 +29,32 @@ const RecipeCardDetails = (match) => {
         fetch(`https://cors-anywhere.herokuapp.com/${pathName}&app_key=${apiKey}&app_id=${appId}`)
             .then(res => res.json())
             .then(data => setRecipe(data));
+        console.log(recipe)
     };
 
-    console.log(recipe)
+
+    const ifData = (data) => {
+        if (data.length === 0) {
+            console.log('no data')
+        } else {
+            {
+                data.map((data, index) => {
+                    return <ul><li key={index}>{data}</li></ul>
+                })
+            }
+        }
+    }
 
 
     return (
         <div>
+            <Link to={`/recipe-app/home/${match.location.query.back}`} className="back-btn">
+                <div><i class="fas fa-chevron-left"></i>Back</div>
+            </Link>
             {recipe.map((data, index) => {
                 return (
                     <div key={index} className="recipe-card">
                         <div className="recipe-card-container">
-                            {/* <div className="recipe-card-container__back-btn">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        </div> */}
 
                             <div className="recipe-card-container__title">
                                 <h2>{data.label}</h2>
@@ -60,11 +82,8 @@ const RecipeCardDetails = (match) => {
                                         return <li key={index}>{data}</li>
                                     })}
                                 </ul>
-                                <ul>
-                                    {data.dietLabels.map((data, index) => {
-                                        return <li key={index}>{data}</li>
-                                    })}
-                                </ul>
+
+                                {ifData(data.dietLabels)}
 
                                 <h3>Cautions</h3>
                                 <ul>

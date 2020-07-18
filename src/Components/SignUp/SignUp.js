@@ -24,7 +24,7 @@ const SignUp = () => {
                         {/* <button type="submit" /> */}
                     </form>
                 </div>
-                <Link to="/home"><button>Home</button></Link>
+                <Link to="/recipe-app/home"><button>Home</button></Link>
             </div>
         </div>
     )

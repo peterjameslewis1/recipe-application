@@ -1,5 +1,6 @@
 .home-panels {
-  margin-top: 59px;
+  position: relative;
+  top: 59px;
 }
 .home-panels .results {
   top: 0;
@@ -16,10 +17,14 @@
   box-shadow: none;
   border-radius: none;
 }
-.home-panels .results a .panel-recipes .recipie-card-container img {
-  border-radius: 0;
+.home-panels .results a .panel-recipes .recipie-card-container__img {
   width: 100%;
   display: block;
+  overflow: hidden;
+}
+.home-panels .results a .panel-recipes .recipie-card-container__img img {
+  border-radius: none !important;
+  width: 100%;
 }
 .home-panels .results a .panel-recipes .recipie-card-container__text {
   height: 100% !important;
