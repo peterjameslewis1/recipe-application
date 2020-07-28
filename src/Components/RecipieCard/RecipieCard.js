@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const Card = (match) => {
     const [recipeData, setRecipeData] = useState([]);
@@ -12,6 +13,10 @@ const Card = (match) => {
     useEffect(() => {
         fetchMoreData(recipeType)
     }, [recipeType])
+
+
+
+
 
 
 
@@ -32,15 +37,9 @@ const Card = (match) => {
         fetchMoreData()
     }
 
-    console.log(recipeData)
-    // console.log('/recipe-app')
-    // console.log('/home')
-    // console.log(`/${recipeType}`)
-    // console.log(`sdfsef7873948##r5`)
 
     return (
         <div className="results">
-
             <Link to="/recipe-app/home" className="back-btn">
                 <div><i class="fas fa-chevron-left"></i>Back</div>
             </Link>

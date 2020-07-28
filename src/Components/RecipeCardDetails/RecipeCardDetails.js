@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const RecipeCardDetails = (match) => {
     const [recipe, setRecipe] = useState([]);
@@ -48,6 +49,7 @@ const RecipeCardDetails = (match) => {
 
     return (
         <div>
+            <Header path={`/recipe-app/home/${match.location.query.back}`} />
             <Link to={`/recipe-app/home/${match.location.query.back}`} className="back-btn">
                 <div><i class="fas fa-chevron-left"></i>Back</div>
             </Link>

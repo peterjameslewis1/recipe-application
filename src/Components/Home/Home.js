@@ -6,8 +6,8 @@ import ImgSpicy from './img/spicy.jpg';
 import ImgMeat from './img/meaty.jpg';
 import ImgDessert from './img/dessert.jpg';
 
-const Home = () => {
 
+const Home = () => {
 
     return (
         <div className="home-panels">
