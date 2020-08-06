@@ -20,18 +20,20 @@
             font-weight: 400;
             text-transform: capitalize;
             font-size: 60px;
+            position: relative;
+            z-index: 9999;
         }
 
         &-box {
-            background: rgba(255, 255, 255, 0.5);
-            text-align: center;
-            color: black;
+            text-align: left;
+            color: white;
             width: 100%;
             padding: 50px 0;
 
             h2 {
                 margin-top: 0;
-                font-size: 28px;
+                font-size: 22px;
+                text-transform: capitalize;
             }
 
             p {
@@ -40,33 +42,114 @@
 
             form {
                 input {
-                    border-radius: 3px;
                     outline: none;
                     border: none;
-                    padding: 5px;
+                    padding: 10px 0 10px 7px;
+                    width: 97%;
+                    color: black;
+                    margin-bottom: 5px;
+                }
+
+                .err {
+                    margin: 0em;
+                }
+
+                // .create-acc {
+                //     width: 30%;
+                //     margin-top: 10px;
+                //     padding: 10px 0;
+                //     border: 1px solid white;
+                //     background-color: transparent;
+                //     color: white;
+                //     position: relative;
+
+                // }
+
+                .btn {
+                    width: 30%;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                    padding: 10px 0;
+                    border: 1px solid white;
+                    background-color: transparent;
+                    color: white;
+                    position: relative;
+                    opacity: 1;
+                    display: inline-block;
+                    text-align: center;
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-weight: 500;
+                    transform: scale(1);
+                    transition: all 1s;
+
+                    &:hover,
+                    &:focus {
+                        background-color: white;
+                        color: black;
+                        outline: none;
+                    }
+                }
+
+                .continue {
+                    transform: scale(0);
+                    opacity: 0;
                 }
             }
         }
 
-        a {
-            display: block;
-            margin: 20px;
-            width: 100%;
-            background: white;
-            padding: 10px 0;
-            color: white;
-            border: none;
+        .skip {
+            margin: 15px 0 15px 15px;
+            display: inline-block;
+            color: grey;
+            font-size: 12px;
+        }
+    }
 
-            &:hover {
-                background-color: darken(white, 5%);
-            }
+    .home {
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: transparent;
 
-            button {
-                outline: none;
-                background-color: transparent;
-                border: none;
-                font-size: 15px;
-            }
+
+
+        &:hover {
+            background-color: darken(white, 5%);
+        }
+    }
+
+    .active {
+        animation-name: home;
+        animation: home 1.5s ease-out 1s;
+        animation-fill-mode: forwards;
+        text-decoration: none;
+        font-size: 34px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        bottom: 0;
+        width: 100%;
+        font-weight: 400;
+        color: black;
+    }
+
+    @keyframes home {
+        0% {
+            height: 0px;
+            background-color: transparent;
+        }
+
+        100% {
+            height: 15vh;
+            opacity: 1;
+            background-color: #fcf4ec;
         }
     }
 }

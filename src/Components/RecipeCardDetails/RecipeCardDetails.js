@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../Header/Header';
+import { useHistory } from 'react-router-dom';
 
 const RecipeCardDetails = (match) => {
     const [recipe, setRecipe] = useState([]);
-    // const hash = match.location.hash.slice(1)
     const uri = match.location.pathname.split('#')[1];
     const hash = uri;
-
-    console.log(uri)
-
-    // console.log(match.location.query.back)
+    let history = useHistory();
 
     const pathName = `https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23${hash}`
-    // const pathName = `https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%${hash}`
 
     useEffect(() => {
         fetchData(pathName)
     }, [pathName])
 
-    console.log(recipe)
-    console.log(match)
 
 
     const fetchData = (pathName) => {
@@ -29,30 +21,27 @@ const RecipeCardDetails = (match) => {
 
         fetch(`https://cors-anywhere.herokuapp.com/${pathName}&app_key=${apiKey}&app_id=${appId}`)
             .then(res => res.json())
-            .then(data => setRecipe(data));
-        console.log(recipe)
+            .then(data => setRecipe(data))
+            .catch(err => console.log(`${err}`))
     };
 
 
     const ifData = (data) => {
         if (data.length === 0) {
-            console.log('no data')
+            return;
         } else {
-            {
-                data.map((data, index) => {
-                    return <ul><li key={index}>{data}</li></ul>
-                })
-            }
+            data.map((data, index) => {
+                return <ul><li key={index}>{data}</li></ul>
+            })
         }
     }
 
 
     return (
         <div>
-            <Header path={`/recipe-app/home/${match.location.query.back}`} />
-            <Link to={`/recipe-app/home/${match.location.query.back}`} className="back-btn">
-                <div><i class="fas fa-chevron-left"></i>Back</div>
-            </Link>
+            <div onClick={() => history.goBack()} className="back-btn">
+                <div><i className="fas fa-chevron-left"></i>Back</div>
+            </div>
             {recipe.map((data, index) => {
                 return (
                     <div key={index} className="recipe-card">
@@ -71,7 +60,7 @@ const RecipeCardDetails = (match) => {
                                 <h3>Ingredients:</h3>
                                 <ul>
                                     {data.ingredients.map((data, index) => {
-                                        return <li key={index}><span>{data.text}</span><span>{data.weight}</span></li>
+                                        return <li key={index}><span>{data.text}</span>:<span style={{ marginLeft: '5px' }}>{parseInt(data.weight)}g</span></li>
                                     })}
                                 </ul>
                             </div>

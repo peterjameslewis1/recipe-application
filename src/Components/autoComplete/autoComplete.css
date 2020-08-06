@@ -25,6 +25,10 @@
 .suggestions li:not(:last-of-type) {
   border-bottom: 1px solid #999;
 }
+.recipe-card-link {
+  text-decoration: none;
+  color: black;
+}
 .item {
   display: flex;
   margin: 5px 0;

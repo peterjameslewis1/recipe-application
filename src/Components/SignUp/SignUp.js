@@ -2,13 +2,34 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const SignUp = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [err, setErr] = useState('');
+
 
     const userHandler = e => {
-        console.log(e.target.value)
-        setUsername(e.target.value)
-        console.log(username)
+        setEmail(e.target.value)
     }
+    const passHandler = e => {
+        setPassword(e.target.value)
+    }
+
+    const accCreation = e => {
+
+        if (email.length > 7 && password.length > 7) {
+            setTimeout(() => {
+                setErr('Account Created!')
+            }, 2000);
+        }
+        else {
+            setErr("Greater than 7 characters please!")
+        }
+        e.preventDefault();
+    }
+
+
+
+
 
 
     return (
@@ -18,13 +39,14 @@ const SignUp = () => {
                 <div className="sign-up-box">
                     <h2>Sign up</h2>
                     <form>
-                        <input type="text" className="username" value={username} onChange={userHandler} />
-                        {username > 6 ? <p>Valid username</p> : <p>Greater than 6 characters</p>}
-                        <input type="text" className="password" />
-                        {/* <button type="submit" /> */}
+                        <input type="email" className="email" value={email} onChange={userHandler} placeholder="Email" />
+                        <input type="password" className="password" value={password} onChange={passHandler} placeholder="Password" />
+                        <p className="err">{err}</p>
+                        <a href="#" className="btn" onClick={accCreation}>Create</a>
+                        <Link to="/recipe-app/home" className={err === 'Account Created!' ? 'btn' : 'continue'}>Continue</Link>
+                        <Link to="/recipe-app/home" className="skip"><p>Skip</p></Link>
                     </form>
                 </div>
-                <Link to="/recipe-app/home"><button>Home</button></Link>
             </div>
         </div>
     )
