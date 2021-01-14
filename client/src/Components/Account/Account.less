@@ -1,0 +1,118 @@
+button {
+  width: 100%;
+  outline: none;
+  padding: 12px 0;
+  border: none;
+  background-color: #00b5ad;
+  border-radius: 7px;
+  color: white;
+  font-weight: 100;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #00000014;
+  padding: 12px;
+  border-radius: 7px;
+  margin: 5px 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.account,
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 20px 0;
+
+  &__user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .back-btn {
+      i {
+        margin: 0 5px;
+        font-size: 18px;
+        color: #00b5ad;
+      }
+    }
+
+    &__logo {
+      flex: 0 1 15%;
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 30px;
+    flex: 0 1 10%;
+    color: #00b5ad;
+    flex: 0 1 100%;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .authentication {
+    text-align: left;
+    color: #00b5ad;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    flex: 0 1 30%;
+    p {
+      margin-left: 2px;
+    }
+    button {
+      i {
+        margin-left: 10px;
+        font-size: 12px;
+      }
+    }
+    .submit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .auth-btn {
+    margin-top: 20px;
+    button {
+      background-color: #009c95;
+    }
+  }
+}
+
+.dashboard {
+  justify-content: flex-start;
+  h2 {
+    flex: 0 1 20%;
+    font-size: 40px;
+  }
+  .back-btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .auth-btn {
+    margin: 10px 0;
+  }
+}

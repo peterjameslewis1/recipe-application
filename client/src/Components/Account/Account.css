@@ -1,0 +1,114 @@
+button {
+  width: 100%;
+  outline: none;
+  padding: 12px 0;
+  background-color: #00b5ad;
+  border-radius: 7px;
+  color: white;
+  font-weight: 100;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+a {
+  text-decoration: none;
+}
+input {
+  width: 100%;
+  border: 1px solid #00000014;
+  padding: 12px;
+  border-radius: 7px;
+  margin: 5px 0;
+}
+input:focus {
+  outline: none;
+}
+.account,
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.account__user-info,
+.dashboard__user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.account__user-info .back-btn i,
+.dashboard__user-info .back-btn i {
+  margin: 0 5px;
+  font-size: 18px;
+  color: #00b5ad;
+}
+.account__user-info__logo,
+.dashboard__user-info__logo {
+  flex: 0 1 15%;
+}
+.account__user-info__logo img,
+.dashboard__user-info__logo img {
+  width: 100%;
+  border-radius: 50%;
+}
+.account h2,
+.dashboard h2 {
+  font-size: 30px;
+  flex: 0 1 10%;
+  color: #00b5ad;
+  flex: 0 1 100%;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account .authentication,
+.dashboard .authentication {
+  text-align: left;
+  color: #00b5ad;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+  flex: 0 1 30%;
+}
+.account .authentication p,
+.dashboard .authentication p {
+  margin-left: 2px;
+}
+.account .authentication button i,
+.dashboard .authentication button i {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.account .authentication .submit,
+.dashboard .authentication .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account .auth-btn,
+.dashboard .auth-btn {
+  margin-top: 20px;
+}
+.account .auth-btn button,
+.dashboard .auth-btn button {
+  background-color: #009c95;
+}
+.dashboard {
+  justify-content: flex-start;
+}
+.dashboard h2 {
+  flex: 0 1 20%;
+  font-size: 40px;
+}
+.dashboard .back-btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.dashboard .auth-btn {
+  margin: 10px 0;
+}

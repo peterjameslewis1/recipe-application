@@ -1,0 +1,103 @@
+.single-recipe {
+  text-align: left;
+}
+.single-recipe .img img {
+  width: 100%;
+  display: block;
+}
+.single-recipe .title-container {
+  margin: 20px auto;
+}
+.single-recipe .title-container h2 {
+  font-size: 30px;
+  color: black;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize;
+}
+.single-recipe .title-container h2 i {
+  color: #00b5ad;
+}
+.single-recipe .title-container .source {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.single-recipe .title-container .source strong {
+  color: #00b5ad;
+}
+.single-recipe__text {
+  margin: 10px auto;
+  height: 150px;
+  overflow: scroll;
+}
+.single-recipe__text .summary {
+  margin: 10px 0;
+  color: gray;
+  line-height: 22px;
+}
+.single-recipe__text .summary a {
+  color: gray;
+}
+.single-recipe .list {
+  margin: 60px auto !important;
+  padding: 0 10px;
+}
+.single-recipe .list ul {
+  padding-left: 0;
+  list-style-position: inside;
+}
+.single-recipe .list li {
+  padding: 20px 0;
+  border-bottom: 1px solid #00b5ad;
+  font-size: 16px;
+}
+.single-recipe .list li span {
+  color: gray;
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 14px;
+}
+.single-recipe__features {
+  display: flex;
+  width: 100%;
+  background: #00b5ad;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+}
+.single-recipe__features div {
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+}
+.single-recipe__features div i {
+  margin-right: 5px;
+}
+.single-recipe .similar-recipes h2 {
+  color: #00b5ad;
+  font-weight: 500;
+}
+.single-recipe .similar-recipes #similar {
+  overflow: scroll;
+  flex-wrap: unset;
+}
+.single-recipe .similar-recipes #similar li {
+  background-color: #00b5ad;
+  flex-basis: 70%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.single-recipe .similar-recipes #similar li a {
+  color: white;
+}
+.single-recipe .similar-recipes #similar li a i {
+  color: white;
+}
+.single-recipe .similar-recipes #similar li a .rating {
+  color: gold;
+}

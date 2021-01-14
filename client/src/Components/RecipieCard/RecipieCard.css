@@ -1,0 +1,123 @@
+.results {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+.results__item {
+  padding: 3px;
+  box-shadow: 0 0 5px 0px #cacaca;
+  text-align: left;
+  margin-bottom: 10px;
+  flex-basis: calc(50% - 5px);
+  list-style: none;
+  position: relative;
+}
+.results__item .favourite {
+  position: absolute;
+  top: 38%;
+  right: 0px;
+  background: white;
+  color: #00b5ad;
+  padding: 10px;
+  border-radius: 50%;
+}
+.results__item a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+}
+.results__item .img {
+  flex: initial;
+  position: relative;
+}
+.results__item .img img {
+  width: 100%;
+  display: block;
+}
+.results__item__text {
+  flex: initial;
+  padding: 0 3px;
+}
+.results__item__text .title {
+  font-weight: 400;
+  font-size: 14px;
+  padding: 10px 0;
+}
+.results__item__text .source {
+  font-size: 12px;
+  color: gray;
+  font-weight: 500;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted gray;
+}
+.results__item__text .source strong {
+  font-weight: bold;
+}
+.results__item__scores {
+  display: flex;
+  flex: auto;
+  align-items: flex-end;
+  padding: 10px 3px;
+}
+.results__item__scores__score {
+  text-align: left;
+  flex: 33%;
+  display: flex;
+  align-items: center;
+}
+.results__item__scores__score span {
+  font-size: 12px;
+}
+.results__item__scores__score i {
+  margin-right: 5px;
+  font-size: 12px;
+}
+.results__item__scores__score .rating {
+  color: gold;
+}
+.results .load-more {
+  background: #fcf4ec;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 40px;
+  width: 100%;
+  color: black;
+  text-decoration: none;
+}
+@media screen and (max-width: 350px) {
+  display: flex;
+  flex-wrap: wrap;
+  top: 70px;
+  a {
+    flex: 1 1 40%;
+  }
+  a .recipes .recipie-card {
+    margin-top: 0;
+  }
+  a .recipes .recipie-card-container__text {
+    flex-direction: column-reverse;
+    padding: 10px;
+    height: 100px;
+  }
+}
+@media screen and (min-width: 768px) {
+  display: flex;
+  flex-wrap: wrap;
+  top: 50px;
+  a {
+    flex: 1 1 40%;
+  }
+  a .recipes .recipie-card {
+    margin-top: 0;
+  }
+  a .recipes .recipie-card-container {
+    height: 330px;
+  }
+}

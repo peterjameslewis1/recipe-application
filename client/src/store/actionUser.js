@@ -1,0 +1,204 @@
+import axios from 'axios';
+export const FETCH_USER_BEGIN = 'FETCH_USER_BEGIN';
+export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
+export const SET_USER_ON_RELOAD = 'SET_USER_ON_RELOAD';
+export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const LOG_USER_OUT = 'LOG_USER_OUT';
+export const SET_USER_IMAGE = 'SET_USER_IMAGE';
+export const SET_USER_FAVOURITES__DETAILS = 'SET_USER_FAVOURITES__DETAILS';
+export const SET_USER_FAVOURITES__ID = 'SET_USER_FAVOURITES__ID';
+
+export const fetchUserBegin = () => ({
+    type: FETCH_USER_BEGIN,
+})
+
+export const fetchUserSuccess = data => ({
+    type: FETCH_USER_SUCCESS,
+    payload: data
+})
+export const setUserOnReload = data => ({
+    type: SET_USER_ON_RELOAD,
+    payload: data
+})
+export const setUserImage = data => ({
+    type: SET_USER_IMAGE,
+    payload: data
+})
+export const setUserFavourites = data => ({
+    type: SET_USER_FAVOURITES__DETAILS,
+    payload: data
+})
+export const setUserFavouriteId = data => ({
+    type: SET_USER_FAVOURITES__ID,
+    payload: data
+})
+export const fetchUserFailure = error => ({
+    type: FETCH_USER_FAILURE,
+    payload: error
+})
+export const logUserOut = () => ({
+    type: LOG_USER_OUT
+})
+
+
+export const favouriveDetails = data => {
+    console.log(data)
+    return async dispatch => {
+        axios({
+            method: "GET",
+            url: `https://api.spoonacular.com/recipes/informationBulk?ids=${data}&apiKey=b4783ea160ce4158a0220ce00e812a53`,
+        })
+            .then(res => {
+                dispatch(setUserFavourites(res.data))
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}
+
+
+
+export const setFavouriteRecipe = data => {
+    return async dispatch => {
+        dispatch(fetchUserBegin())
+        await axios({
+            method: 'POST',
+            url: '/api/addfaveourite',
+            data: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+            .then(res => {
+                dispatch(fetchUserSuccess(res.data))
+            })
+            .catch((err) => {
+                fetchUserFailure(err.data)
+            })
+    }
+}
+
+export const deleteFavouriteRecipe = data => {
+    console.log(data)
+    return async dispatch => {
+        axios({
+            method: 'POST',
+            url: '/api/deletefavourite',
+            data: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+            .then(res => {
+                console.log(res.data)
+                async function setUser() {
+                    // await dispatch(fetchUserSuccess(res.data))
+                }
+                setUser()
+            })
+            .catch((err) => {
+                fetchUserFailure(err.data)
+            })
+    }
+}
+
+
+export const newUserImage = data => {
+    console.log(data)
+    return async (dispatch) => {
+        dispatch(fetchUserBegin())
+        await axios({
+            method: 'POST',
+            url: '/api/upload',
+            data: data,
+            headers: {
+                'Content-type': 'multipart/form-data'
+            }
+        }).then(res => {
+            console.log(res)
+            return dispatch(setUserImage(res.data))
+        }).catch(err => {
+            console.log(err.response)
+            return dispatch(fetchUserFailure(err.data))
+        })
+    }
+}
+
+export const userDetails = data => {
+    return async (dispatch) => {
+        dispatch(fetchUserBegin())
+        await axios({
+            method: 'POST',
+            url: '/api/login',
+            data: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(res => {
+            async function setUser() {
+                console.log(res, "user data")
+                // const bulkRecipies = await favouriveDetails(res.data.favourites);
+                // console.log(bulkRecipies)
+                // const user = {
+                //     ...res.data,
+                //     // favouritesDetails: bulkRecipies
+                // }
+                await dispatch(fetchUserSuccess(res.data))
+                await dispatch(favouriveDetails(res.data.favourites))
+
+            }
+            setUser()
+        }).catch(err => {
+            dispatch(fetchUserFailure(err.response))
+        })
+    }
+}
+
+
+export const newUserDetails = data => {
+    console.log(data)
+    return dispatch => {
+        dispatch(fetchUserBegin())
+        axios({
+            method: 'POST',
+            url: 'https://api.spoonacular.com/users/connect?apiKey=e4dc4b379a1a4edca9fa8ed1d654934d',
+            data: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json'
+            }
+        }).then(res => {
+            console.log(res)
+            const userData = {
+                ...data,
+                ...res.data
+            }
+            axios({
+                method: 'POST',
+                url: '/api/register',
+                data: JSON.stringify(userData),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            }).then(res => {
+                console.log(res)
+                return dispatch(fetchUserSuccess(res.data))
+            }).catch(err => {
+                return dispatch(fetchUserFailure(err.response.data.message))
+            })
+        }).catch(err => {
+            console.log(err)
+            return dispatch(fetchUserFailure(err.response.data.message))
+        })
+    }
+}
+
+
+export const logOut = () => {
+    return dispatch => {
+        dispatch(fetchUserBegin())
+        return dispatch(logUserOut())
+    }
+}
+

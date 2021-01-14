@@ -1,0 +1,104 @@
+@import "./Components/Header/Header.css";
+@import "./Components/RecipieCard/RecipieCard.css";
+@import "./Components/autoComplete/autoComplete.css";
+@import "./Components/RecipeCardDetails/RecipeCardDetails.css";
+@import "./Components/Home/Home.css";
+@import "./Components/Account/Account.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.hide {
+  display: none;
+}
+
+html,
+body,
+#root,
+.App,
+.header-body {
+  height: 100%;
+}
+#content {
+  padding-top: 60px;
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  font-family: "Quicksand";
+  background: rgb(255, 255, 255);
+}
+
+.stats {
+  display: flex;
+  &__item {
+    flex-basis: auto;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    background-color: #00b5ad;
+    align-items: center;
+    padding: 10px 0;
+    color: white;
+    font-weight: 600;
+
+    &:nth-child(2) {
+      i {
+        color: gold;
+      }
+    }
+    &:nth-child(4) {
+      i {
+        color: gold;
+      }
+    }
+    i {
+      margin-right: 10px;
+      color: white;
+      &:nth-child(2) {
+        color: gold;
+      }
+    }
+  }
+}
+
+.search {
+  .wrapper {
+    .cuisines {
+      margin: 0 auto;
+      padding: 0;
+      max-width: 95%;
+      display: flex;
+      overflow: scroll;
+      align-items: center;
+      &__item {
+        padding: 15px;
+        list-style: none;
+        border-radius: 10px;
+        background: #e6e6e6;
+        margin-right: 5px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .autocomplete {
+    input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background-color: darken(white, 10%);
+      border-radius: 10px;
+    }
+  }
+}
+
+.container {
+  max-width: 95%;
+  margin: 0 auto;
+}
