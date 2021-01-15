@@ -18,10 +18,12 @@ body,
 .App,
 .header-body {
   height: 100%;
+  position: relative;
 }
 #content {
-  padding-top: 60px;
   height: 100%;
+  top: 50px;
+  position: relative;
 }
 .App {
   text-align: center;

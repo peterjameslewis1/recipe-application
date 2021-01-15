@@ -1,8 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const Header = ({ user }) => {
+    const history = useHistory();
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -13,6 +15,7 @@ const Header = ({ user }) => {
             <div className="header__container container">
                 <div className="mobile-nav">
                     <Link to="/" className="header__container__icon"><i className="fas fa-home"></i></Link>
+                    {/* <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i> */}
                 </div>
                 <Link to="/" className="home__title">
                     <h1 onClick={scrollToTop}>

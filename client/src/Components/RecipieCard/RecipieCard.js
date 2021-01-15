@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 
 
-const Card = ({ data, user }) => {
+const Card = ({ data }) => {
 
 
     return (

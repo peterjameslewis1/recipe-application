@@ -18,7 +18,7 @@ const Stats = ({ data, newPrice }) => {
             </div>
             <div className="stats__item">
                 <i className="fas fa-coins"></i>
-                <span>£{newPrice}</span>
+                <span>${newPrice}</span>
             </div>
         </div>
     )

@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 
 const Account = ({ user }) => {
     const history = useHistory();
-    console.log(user)
 
     return (
         <div className="account container">

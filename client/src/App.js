@@ -11,19 +11,15 @@ import { connect } from 'react-redux'
 import Favourites from './Components/Account/Favourites';
 
 
-
 const App = ({ user, }) => {
-
 
   return (
     <Router>
       <div className="App">
         <Switch>
-
           <Route path={user.loggedIn ? '/dashboard' : '/account'}>
             {user.loggedIn ? <Dashboard /> : <Account />}
           </Route>
-          {/* <Dashboard /> */}
           <Layout>
             <Route exact path="/">
               <Home />

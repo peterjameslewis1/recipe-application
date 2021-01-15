@@ -45,9 +45,7 @@ export const fetchRandomRecipe = () => {
         fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 const newData = data.recipes.filter(recipe => recipe !== null)
-                console.log(newData)
 
                 dispatch(fetchSuccess(newData))
             })
@@ -83,7 +81,6 @@ export const searchRecipeDetails = id => {
         fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 dispatch(fetchSearchSuccess(data))
             })
             .catch(error => {
@@ -101,7 +98,6 @@ export const similarRecipeDetails = id => {
         fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 dispatch(fetchSimilarRecipes(data))
             })
             .catch(error => {
@@ -121,7 +117,6 @@ export const searchCuisine = (cuisine, length) => {
             .then(response => response.json())
             .then(data => {
                 const ids = data.results.map(result => result.id)
-                console.log(data)
                 dispatch(searchRecipeDetails(ids))
             })
             .catch(error => {
@@ -141,7 +136,6 @@ export const similarRecipes = id => {
             .then(response => response.json())
             .then(data => {
                 const ids = data.map(result => result.id)
-                console.log(data)
                 dispatch(similarRecipeDetails(ids))
             })
             .catch(error => {

@@ -29,7 +29,7 @@
 }
 .single-recipe__text {
   margin: 10px auto;
-  height: 150px;
+  height: 200px;
   overflow: scroll;
 }
 .single-recipe__text .summary {
@@ -76,6 +76,9 @@
 }
 .single-recipe__features div i {
   margin-right: 5px;
+}
+.single-recipe .similar-recipes .source {
+  color: white;
 }
 .single-recipe .similar-recipes h2 {
   color: #00b5ad;

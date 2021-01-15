@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { similarRecipes, setFavouriteRecipe } from '../../store/actionFetch';
 import Stats from '../Stats';
 import RecipieCard from '../RecipieCard/RecipieCard';
 import FavouriteButton from '../Private/FavouriteButton';
 
-const RecipeCardDetails = ({ setFavourite, user, similarRecipes, similarData = [], location }) => {
-    // const { location, similarRecipes, similarData = [] } = props;
+const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location }) => {
+    const history = useHistory();
     const data = location.state;
-
-
     const price = data.pricePerServing / 100;
     const newPrice = price.toFixed(2);
 
+
     useEffect(() => {
+        // window.scrollTo({ top: 0 })
         let cancelled = false;
         if (!cancelled) {
             similarRecipes(data.id)
@@ -25,6 +26,7 @@ const RecipeCardDetails = ({ setFavourite, user, similarRecipes, similarData = [
 
 
     return (
+
         <div className="single-recipe">
             <div className="img">
                 <img src={data.image} alt="image of the cooked recipe" />
@@ -49,7 +51,9 @@ const RecipeCardDetails = ({ setFavourite, user, similarRecipes, similarData = [
                 </ul>
             </div>
             <div className="single-recipe__features">
-                <div className="save-recipe">{user.loggedIn ? <FavouriteButton id={data.id} /> : null} Favourites</div>
+                <div className="save-recipe" onClick={() => history.push('/account')}>
+                    {user.loggedIn ? <FavouriteButton id={data.id} /> : null}
+                    <i className="far fa-heart favourite"></i>Favourites</div>
             </div>
 
             <div className="single-recipe__instructions list container">

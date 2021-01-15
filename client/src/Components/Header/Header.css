@@ -31,6 +31,9 @@
   height: 100%;
   text-align: left;
 }
+.header-body .header__container .mobile-nav i {
+  color: white;
+}
 .header-body .header__container .menu {
   text-align: right;
 }

@@ -8,12 +8,8 @@ const AddFavButton = ({ setFavourite, deleteFavourite, user, id, setUserFavourit
     const includes = user.user.favourites.includes(id);
 
     const deleteOne = async id => {
-        // const includes = user.user.favouriteDetails.includes(id);
-        console.log()
         const includesDetails = await user.user.favouritesDetails.filter(fav => fav.id !== id)
         const includesFav = await user.user.favourites.filter(fav => fav !== id)
-        console.log(includesFav)
-        console.log(includesDetails)
         await setUserFavourites(includesDetails)
         await setUserFavouritesId(includesFav)
     }
