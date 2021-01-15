@@ -12,17 +12,21 @@ const Register = ({ createUser, user }) => {
     const [password, setPassword] = useState('')
     const history = useHistory();
 
+    useEffect(() => {
+        if (user.loggedIn) {
+            return history.push('/')
+        }
+    }, [user.loggedIn])
+
 
     const handleSubmit = async e => {
         e.preventDefault();
-        // await setNewUser({ name, email, password })
         await createUser({ name, email, password })
-        return user.loggedIn ? history.push('/') : null
     }
 
     return (
         <form className="authentication" onSubmit={handleSubmit}>
-            {/* <p>{user.error ? user.error : 'Register'}</p> */}
+            <p>{user.error?.data?.type === 'register' ? user.error.data.message : 'Register'}</p>
             <input onChange={e => setName(e.target.value)} type="text" name="Full name" className="name" placeholder="Full name" required />
             <input onChange={e => setEmail(e.target.value)} type="email" name="email" className="email" placeholder="Email address" required />
             <input onChange={e => setPassword(e.target.value)} type="password" name="password" className="password" placeholder="Password" required />

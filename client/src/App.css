@@ -57,6 +57,9 @@ body,
 .stats__item i:nth-child(2) {
   color: gold;
 }
+.search {
+  padding-top: 10px;
+}
 .search .wrapper .cuisines {
   margin: 0 auto;
   padding: 0;

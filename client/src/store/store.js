@@ -6,7 +6,7 @@ import recipeReducer from '../store/reducers/recipeReducer'
 import thunk from 'redux-thunk';
 
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
 
 const persistConfig = {
@@ -26,7 +26,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(
     persistedReducer,
-    applyMiddleware(thunk)
+    composeEnhancers(applyMiddleware(thunk))
 );
 export const persistor = persistStore(store);
 

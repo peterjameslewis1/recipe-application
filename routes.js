@@ -56,10 +56,6 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 
-    // Validation
-    const { error } = await loginValidation(req.body)
-    if (error) return res.status(400).json({ "message": error.details[0].message, "type": "login" })
-
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json({ "message": "Email or password is wrong", "type": "login" });
 
@@ -75,6 +71,7 @@ router.post('/login', async (req, res) => {
     }
     catch (err) {
         console.log('Error')
+        console.log(err)
         return res.status(400).send(err)
     }
 })

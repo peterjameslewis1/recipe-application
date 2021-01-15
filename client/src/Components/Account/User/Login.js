@@ -8,18 +8,22 @@ const Login = ({ userDetails, user, fetchData }) => {
     const [password, setPassword] = useState('')
     const history = useHistory();
 
+    useEffect(() => {
+        if (user.loggedIn) {
+            window.location.assign('/')
+        }
+    }, [user.loggedIn])
 
     const handleSubmit = async e => {
         e.preventDefault();
         await userDetails({ email, password })
         await fetchData(user.user.favourites)
-        return history.push('/')
     }
 
 
     return (
         <form className="authentication" onSubmit={handleSubmit}>
-            {/* <p>{user.error?.data?.type === 'login' ? user.error?.data?.message : 'Login'}</p> */}
+            <p>{user.error?.data?.message ? user.error.data.message : 'Login'}</p>
             <input onChange={e => setEmail(e.target.value)} type="email" className="email" name="email" placeholder="Email address" required />
             <input onChange={e => setPassword(e.target.value)} type="password" name="password" className="password" placeholder="Password" required />
             <button type="submit" className="submit">Login<i className="fas fa-arrow-right"></i>

@@ -17,9 +17,8 @@ const App = ({ user, }) => {
     <Router>
       <div className="App">
         <Switch>
-          <Route path={user.loggedIn ? '/dashboard' : '/account'}>
-            {user.loggedIn ? <Dashboard /> : <Account />}
-          </Route>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/account" component={Account} />
           <Layout>
             <Route exact path="/">
               <Home />
