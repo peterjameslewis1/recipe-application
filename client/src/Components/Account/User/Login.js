@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { userDetails, favouriveDetails } from '../../../store/actionUser';
-
 import { connect } from 'react-redux';
-import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory, withRouter } from "react-router-dom";
 
 const Login = ({ userDetails, user, fetchData }) => {

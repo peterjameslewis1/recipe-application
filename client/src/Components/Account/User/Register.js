@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { newUserDetails } from '../../../store/actionUser';
-import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
+
 import { useHistory } from "react-router-dom";
 
 
