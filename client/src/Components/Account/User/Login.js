@@ -22,7 +22,7 @@ const Login = ({ userDetails, user, fetchData }) => {
             {/* <p>{user.error?.data?.type === 'login' ? user.error?.data?.message : 'Login'}</p> */}
             <input onChange={e => setEmail(e.target.value)} type="email" className="email" name="email" placeholder="Email address" required />
             <input onChange={e => setPassword(e.target.value)} type="password" name="password" className="password" placeholder="Password" required />
-            <button type="submit" className="submit">Login<i className="fas fa-arrow-right"></i>}
+            <button type="submit" className="submit">Login<i className="fas fa-arrow-right"></i>
             </button>
         </form>
     )

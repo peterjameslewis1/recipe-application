@@ -8,12 +8,6 @@ import { useHistory } from 'react-router-dom'
 const LogOut = ({ logOut, user }) => {
     const history = useHistory();
 
-    const override = css`
-  display: block;
-  border-color: white;
-  border: 1px solid;
-    `;
-
     const handleLogOut = async e => {
         e.preventDefault();
         await logOut()
