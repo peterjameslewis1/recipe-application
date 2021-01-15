@@ -20,7 +20,7 @@ const AddFavButton = ({ setFavourite, deleteFavourite, user, id, setUserFavourit
 
 
     return (
-        <div>
+        <div className="favourite-button">
             {
                 includes
                     ?

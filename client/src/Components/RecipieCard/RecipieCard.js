@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FavouriteButton from '../Private/FavouriteButton'
+import { connect } from 'react-redux'
 
 
 
-const Card = ({ data }) => {
+const Card = ({ data, user }) => {
 
 
     return (
@@ -11,7 +13,9 @@ const Card = ({ data }) => {
             pathname: '/recipe',
             state: data
         }} >
-            <div className="img"><img src={data.image} alt="image of the cooked recipe" /></div>
+            <div className="img">
+                <img src={data.image} alt="image of the cooked recipe" />
+            </div>
             <div className="results__item__text">
                 <h4 className="title">{data.title}</h4>
                 <p className="source">Recipe by <strong>{data.sourceName}</strong></p>
@@ -34,4 +38,10 @@ const Card = ({ data }) => {
     )
 }
 
-export default Card;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Card);

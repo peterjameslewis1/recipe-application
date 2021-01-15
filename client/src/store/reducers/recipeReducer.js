@@ -38,7 +38,7 @@ const recipeReducer = (state = initialState, action) => {
         case FETCH_RECIPE_SUCCESS:
             return {
                 ...state,
-                data: state.data.concat(action.payload.recipes),
+                data: state.data.concat(action.payload),
                 searchResults: [],
                 loading: false,
                 error: null,

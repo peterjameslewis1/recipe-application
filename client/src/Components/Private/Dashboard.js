@@ -21,7 +21,7 @@ const DashBoard = ({ user }) => {
         <div className="dashboard container">
             <div className="account__user-info">
                 <div className="back-btn" onClick={() => history.goBack()}><i className="fas fa-arrow-left"></i></div>
-                <div className="account__user-info__logo" onClick={() => setImage(!image)} >{user.image.filePath ? <img src={user.image?.fileName ? user.image.filePath : profileImg} alt="profile image" /> : <i className="fas fa-cloud-upload-alt"></i>}</div>
+                <div className="account__user-info__logo" onClick={() => setImage(!image)} >{user.image?.filePath ? <img src={user.image.fileName ? user.image.filePath : profileImg} alt="profile image" /> : <i className="fas fa-cloud-upload-alt"></i>}</div>
             </div>
             {image ? <UserLogo /> : null}
 

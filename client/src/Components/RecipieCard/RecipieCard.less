@@ -16,14 +16,19 @@
     list-style: none;
     position: relative;
 
-    .favourite {
+    .favourite-button {
       position: absolute;
-      top: 38%;
-      right: 0px;
-      background: white;
-      color: #00b5ad;
-      padding: 10px;
-      border-radius: 50%;
+      z-index: 9999999;
+      top: 5%;
+      right: 5%;
+      transform: translate(50%, -50%);
+
+      i {
+        background: #00b5ad;
+        color: white;
+        padding: 10px;
+        border-radius: 50%;
+      }
     }
 
     a {

@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './store/store.js';
 
 console.log(persistor)
+console.log(`${process.env.REACT_APP_API_KEY}`)
 
 
 ReactDOM.render(

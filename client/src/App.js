@@ -8,47 +8,11 @@ import Dashboard from './Components/Private/Dashboard';
 import Layout from './Components/Layout';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setUserOnReload } from '../src/store/actionUser';
 import Favourites from './Components/Account/Favourites';
 
 
 
-const App = ({ user, saveUserOnReload }) => {
-  // const [loggedIn, setLoggedIn] = useState(false)
-
-  // console.log(JSON.parse(localStorage.getItem('user')).loggedIn)
-  console.log(user)
-  const localUser = JSON.parse(localStorage.getItem('user'))
-  // console.log(localUser)
-
-  useEffect(() => {
-    if (user.loggedIn) {
-      setUserToLocalStorage()
-    } else if (localUser.loggedIn) {
-      setUserToLocalStorage()
-      // saveUserOnReload(user)
-    }
-
-    const initialState = JSON.stringify({ loggedIn: false })
-    localStorage.setItem('user', initialState)
-  }, [user]);
-
-
-  // useEffect(() => {
-  //     async function getData() {
-  //         const data = await fetchData(user.user.favourites)
-  //         return data;
-  //     }
-  //     getData();
-  //     setLoading(false)
-  //     console.log(user.user.favouritesDetails)
-  // }, [user.user.favourites])
-
-
-  const setUserToLocalStorage = async () => {
-    const loggedInUser = await JSON.stringify(user)
-    localStorage.setItem('user', loggedInUser)
-  }
+const App = ({ user, }) => {
 
 
   return (
@@ -81,10 +45,5 @@ const mapStateToProps = state => {
     user: state.user,
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    saveUserOnReload: data => dispatch(setUserOnReload(data)),
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

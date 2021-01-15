@@ -1,4 +1,5 @@
 import axios from 'axios';
+const API_KEY = process.env.REACT_APP_API_KEY;
 export const FETCH_RECIPE_BEGIN = 'FETCH_RECIPE_BEGIN';
 export const FETCH_RECIPE_SUCCESS = 'FETCH_RECIPE_SUCCESS';
 export const FETCH_SEARCH_RECIPE_SUCCESS = 'FETCH_SEARCH_RECIPE_SUCCESS';
@@ -38,13 +39,17 @@ export const setCuisine = cuisine => ({
 
 // Homepage fetch to populate landing page
 export const fetchRandomRecipe = () => {
+
     return (dispatch) => {
         dispatch(fetchBegin())
-        fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
-                dispatch(fetchSuccess(data))
+                const newData = data.recipes.filter(recipe => recipe !== null)
+                console.log(newData)
+
+                dispatch(fetchSuccess(newData))
             })
             .catch(error => {
                 dispatch(fetchFailure(error))
@@ -59,7 +64,7 @@ export const searchRecipeQuery = query => {
         dispatch(fetchBegin())
 
         // Initial fetch to get id's
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?&query=${query}&apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?&query=${query}&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const ids = data.results.map(result => result.id)
@@ -75,7 +80,7 @@ export const searchRecipeQuery = query => {
 export const searchRecipeDetails = id => {
     return dispatch => {
         // Id's are passed to fetch bulk data
-        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -93,7 +98,7 @@ export const searchRecipeDetails = id => {
 export const similarRecipeDetails = id => {
     return dispatch => {
         // Id's are passed to fetch bulk data
-        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -112,9 +117,7 @@ export const searchCuisine = (cuisine, length) => {
     return dispatch => {
         dispatch(fetchBegin())
         // Initial fetch to get id's
-        //https://jsonplaceholder.typicode.com/posts/${length + 10}
-        // https://api.spoonacular.com/recipes/complexSearch?&cuisine=${cuisine}&number=${length + 10}&apiKey=b4783ea160ce4158a0220ce00e812a53
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?&cuisine=${cuisine}&number=${length + 10}&apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?&cuisine=${cuisine}&number=${length + 10}&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const ids = data.results.map(result => result.id)
@@ -134,7 +137,7 @@ export const similarRecipes = id => {
     return dispatch => {
         dispatch(fetchBegin())
         // Initial fetch to get id's
-        fetch(`https://api.spoonacular.com/recipes/${id}/similar?apiKey=b4783ea160ce4158a0220ce00e812a53`)
+        fetch(`https://api.spoonacular.com/recipes/${id}/similar?apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const ids = data.map(result => result.id)

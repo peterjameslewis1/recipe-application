@@ -16,12 +16,16 @@
   list-style: none;
   position: relative;
 }
-.results__item .favourite {
+.results__item .favourite-button {
   position: absolute;
-  top: 38%;
-  right: 0px;
-  background: white;
-  color: #00b5ad;
+  z-index: 9999999;
+  top: 5%;
+  right: 5%;
+  transform: translate(50%, -50%);
+}
+.results__item .favourite-button i {
+  background: #00b5ad;
+  color: white;
   padding: 10px;
   border-radius: 50%;
 }

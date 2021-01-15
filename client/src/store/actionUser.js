@@ -1,4 +1,5 @@
 import axios from 'axios';
+const API_KEY = process.env.REACT_APP_API_KEY;
 export const FETCH_USER_BEGIN = 'FETCH_USER_BEGIN';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const SET_USER_ON_RELOAD = 'SET_USER_ON_RELOAD';
@@ -46,7 +47,7 @@ export const favouriveDetails = data => {
     return async dispatch => {
         axios({
             method: "GET",
-            url: `https://api.spoonacular.com/recipes/informationBulk?ids=${data}&apiKey=b4783ea160ce4158a0220ce00e812a53`,
+            url: `https://api.spoonacular.com/recipes/informationBulk?ids=${data}&apiKey=${API_KEY}`,
         })
             .then(res => {
                 dispatch(setUserFavourites(res.data))
@@ -163,7 +164,7 @@ export const newUserDetails = data => {
         dispatch(fetchUserBegin())
         axios({
             method: 'POST',
-            url: 'https://api.spoonacular.com/users/connect?apiKey=e4dc4b379a1a4edca9fa8ed1d654934d',
+            url: `https://api.spoonacular.com/users/connect?apiKey=${API_KEY}`,
             data: JSON.stringify(data),
             headers: {
                 'Content-type': 'application/json'

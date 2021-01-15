@@ -22,7 +22,7 @@ const Login = ({ userDetails, user, fetchData }) => {
         e.preventDefault();
         await userDetails({ email, password })
         await fetchData(user.user.favourites)
-        return user.loggedIn ? history.push('/') : null
+        return history.push('/')
     }
 
 
