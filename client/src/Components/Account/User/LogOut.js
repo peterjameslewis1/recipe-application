@@ -24,7 +24,7 @@ const LogOut = ({ logOut, user }) => {
     }
     return (
         <div className="auth-btn">
-            <button className='btn-login' onClick={handleLogOut}>Log out<ClipLoader loading={user.loading} css={override} size={20} /></button>
+            <button className='btn-login' onClick={handleLogOut}>Log out</button>
         </div>
     )
 }

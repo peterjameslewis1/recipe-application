@@ -11,12 +11,6 @@ const Login = ({ userDetails, user, fetchData }) => {
     const [password, setPassword] = useState('')
     const history = useHistory();
 
-    const override = css`
-  display: block;
-  border-color: white;
-  border: 1px solid;
-    `;
-
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -31,7 +25,7 @@ const Login = ({ userDetails, user, fetchData }) => {
             {/* <p>{user.error?.data?.type === 'login' ? user.error?.data?.message : 'Login'}</p> */}
             <input onChange={e => setEmail(e.target.value)} type="email" className="email" name="email" placeholder="Email address" required />
             <input onChange={e => setPassword(e.target.value)} type="password" name="password" className="password" placeholder="Password" required />
-            <button type="submit" className="submit">Login{user.loading ? <ClipLoader loading={user.loading} css={override} size={20} /> : <i className="fas fa-arrow-right"></i>}
+            <button type="submit" className="submit">Login<i className="fas fa-arrow-right"></i>}
             </button>
         </form>
     )

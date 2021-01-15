@@ -11,16 +11,8 @@ const Register = ({ createUser, user }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [newUser, setNewUser] = useState({})
     const history = useHistory();
 
-    const override = css`
-    display: block;
-    border-color: white;
-    border: 1px solid;
-  `;
-
-    console.log(user)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -35,7 +27,7 @@ const Register = ({ createUser, user }) => {
             <input onChange={e => setName(e.target.value)} type="text" name="Full name" className="name" placeholder="Full name" required />
             <input onChange={e => setEmail(e.target.value)} type="email" name="email" className="email" placeholder="Email address" required />
             <input onChange={e => setPassword(e.target.value)} type="password" name="password" className="password" placeholder="Password" required />
-            <button type="submit" className="submit">Create account{user.loading ? <ClipLoader loading={user.loading} css={override} size={20} /> : <i className="fas fa-arrow-right"></i>}</button>
+            <button type="submit" className="submit">Create account<i className="fas fa-arrow-right"></i></button>
         </form>
     )
 }
