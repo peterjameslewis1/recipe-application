@@ -1,12 +1,6 @@
-/nodemodules# dependencies
-/node_modules
+# SERVER
 
 
-
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# dependencies
+node_modules/
+/.env

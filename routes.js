@@ -6,11 +6,6 @@ const bcrypt = require('bcrypt');
 const { registerValidation, loginValidation } = require('./validation');
 const path = require('path');
 
-const fileUpload = require('express-fileupload');
-
-
-
-router.use(fileUpload());
 
 router.use(express.static(path.join(__dirname, '/client/public')))
 
