@@ -14,7 +14,7 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
 
 
     useEffect(() => {
-        // window.scrollTo({ top: 0 })
+        window.scrollTo(0, 0)
         let cancelled = false;
         if (!cancelled) {
             similarRecipes(data.id)
@@ -46,7 +46,7 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
                 <h2>Ingredients:</h2>
                 <ul>
                     {data.extendedIngredients.map((i, index) => {
-                        return <li key={index}>{i.original}<span>({i.measures.metric.amount.toFixed(0)}{i.measures.metric.unitLong})</span></li>
+                        return i === null ? null : <li key={index}>{i.original}<span>({i.measures.metric.amount.toFixed(0)}{i.measures.metric.unitLong})</span></li>
                     })}
                 </ul>
             </div>
@@ -58,9 +58,19 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
 
             <div className="single-recipe__instructions list container">
                 <h2>Method:</h2>
-                <ul >
-                    {data.analyzedInstructions[0].steps.map(step => <li key={step.number}>{step.step}</li>)}
-                </ul>
+
+                {data.analyzedInstructions.map(step => {
+                    return step === []
+                        ?
+                        null
+                        :
+                        <div className="method-steps">
+                            <h2>{step.name}</h2>
+                            <ul>
+                                {step.steps.map(x => <li key={x.number}>{x.step}</li>)}
+                            </ul>
+                        </div>
+                })}
             </div>
             <div className="similar-recipes">
                 <h2 className="container">Similar Recipes</h2>
@@ -68,9 +78,6 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
                     {similarData.map(data => <li key={data.id} className="results__item"><RecipieCard data={data} /></li>)}
                 </ul>
             </div>
-
-
-
         </div>
     )
 }

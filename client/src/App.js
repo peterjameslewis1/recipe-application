@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import Favourites from './Components/Account/Favourites';
 
 
-const App = ({ user, }) => {
+const App = () => {
 
   return (
     <Router>

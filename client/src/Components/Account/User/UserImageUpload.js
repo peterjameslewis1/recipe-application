@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { newUserImage } from '../../../store/actionUser'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
-const UserImage = ({ props, user, newUserImage }) => {
+const UserImage = ({ user, newUserImage }) => {
     const [file, setFile] = useState('');
-    const history = useHistory();
 
     const onChange = async e => {
         e.preventDefault();
-        setFile(e.target.files[0])
+        await setFile(e.target.files[0])
     };
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
-        const fd = new FormData()
-        fd.append('file', file)
-        newUserImage(fd)
+        console.log(file)
+
+        const fd = await new FormData()
+        await fd.append('file', file)
+        await newUserImage(fd)
     }
     return (
-        <form onSubmit={onSubmit} className="file-upload">
-            <p>{user.error ? user.error.message : ""}</p>
+        <form onSubmit={onSubmit} className="file-upload" encType="multipart/form-data">
+            <p>{user.error?.msg ? user.error.msg : ""}</p>
             <input type="file" onChange={onChange} />
-            <button type="submit" >Upload</button>
+            <button type="submit">Upload</button>
         </form>
     );
 };
@@ -34,7 +34,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        newUserImage: picture => dispatch(newUserImage(picture))
+        newUserImage: image => dispatch(newUserImage(image))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserImage);

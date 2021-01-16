@@ -107,13 +107,12 @@ export const deleteFavouriteRecipe = data => {
 
 
 export const newUserImage = data => {
-    console.log(data)
     return async (dispatch) => {
         dispatch(fetchUserBegin())
-        await axios({
+        axios({
             method: 'POST',
             url: '/api/upload',
-            data: data,
+            data: data, // formData
             headers: {
                 'Content-type': 'multipart/form-data'
             }
@@ -121,8 +120,9 @@ export const newUserImage = data => {
             console.log(res)
             return dispatch(setUserImage(res.data))
         }).catch(err => {
+            console.log(err)
             console.log(err.response)
-            return dispatch(fetchUserFailure(err.data))
+            return dispatch(fetchUserFailure(err.response.data))
         })
     }
 }

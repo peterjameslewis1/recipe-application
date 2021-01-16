@@ -12,11 +12,6 @@ const DashBoard = ({ user }) => {
     const [image, setImage] = useState(false);
 
 
-    // useEffect(() => {
-    //     setImage(user.image?.filePath ? true : false)
-    // }, [user.image?.filePath])
-
-
     return (
         <div className="dashboard container">
             <div className="account__user-info">

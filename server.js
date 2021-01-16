@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fileUpload = require('express-fileupload');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -18,6 +19,7 @@ mongoose.connect(process.env.DB_CONNECT,
 
 
 // Middleware 
+app.use(fileUpload())
 app.use(express.json());
 app.use(cors());
 

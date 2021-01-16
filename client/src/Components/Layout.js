@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom'
 import Header from './Header/Header';
 
-const Layout = (props) => {
+const PrivateLayout = (props) => {
+    const history = useHistory();
     return (
         <div className="header-body">
-            <Header />
+            <Header history={history} />
             <div id="content">
                 {props.children}
             </div>
@@ -12,4 +14,4 @@ const Layout = (props) => {
     );
 }
 
-export default Layout;
+export default PrivateLayout;

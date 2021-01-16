@@ -5,6 +5,13 @@
   width: 100%;
   display: block;
 }
+.single-recipe__cuisines {
+  padding: 0;
+  list-style: none;
+}
+.single-recipe__cuisines li {
+  font-size: 13px;
+}
 .single-recipe .title-container {
   margin: 20px auto;
 }
@@ -43,6 +50,9 @@
 .single-recipe .list {
   margin: 60px auto !important;
   padding: 0 10px;
+}
+.single-recipe .list .method-steps {
+  margin-bottom: 50px;
 }
 .single-recipe .list ul {
   padding-left: 0;

@@ -79,7 +79,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/upload', async (req, res) => {
     console.log(req.files)
-    const file = req.files.file;
+    const file = req.files?.file;
     if (req.files === null) {
         return await res.status(400).json({ msg: 'No file uploaded' });
     }

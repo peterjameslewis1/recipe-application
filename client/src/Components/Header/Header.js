@@ -1,21 +1,25 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const Header = ({ user }) => {
-    const history = useHistory();
+const Header = ({ user, history }) => {
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
     }
-
+    console.log(history)
     return (
         <div className="header">
             <div className="header__container container">
                 <div className="mobile-nav">
-                    <Link to="/" className="header__container__icon"><i className="fas fa-home"></i></Link>
-                    {/* <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i> */}
+                    {history.location.pathname === '/recipe'
+                        ?
+                        <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i>
+                        :
+                        <Link to="/" className="header__container__icon"><i className="fas fa-home"></i></Link>
+                    }
+                    {/* <Link to="/" className="header__container__icon"><i className="fas fa-home"></i></Link>
+                    <i onClick={() => history.goBack()} className="fas fa-arrow-left"></i> */}
                 </div>
                 <Link to="/" className="home__title">
                     <h1 onClick={scrollToTop}>
@@ -42,4 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

@@ -39,14 +39,12 @@ export const setCuisine = cuisine => ({
 
 // Homepage fetch to populate landing page
 export const fetchRandomRecipe = () => {
-
     return (dispatch) => {
         dispatch(fetchBegin())
         fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
-                const newData = data.recipes.filter(recipe => recipe !== null)
-
+                const newData = data.recipes.filter(recipe => recipe !== null && recipe?.image !== undefined)
                 dispatch(fetchSuccess(newData))
             })
             .catch(error => {
