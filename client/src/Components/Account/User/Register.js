@@ -16,7 +16,7 @@ const Register = ({ createUser, user }) => {
         if (user.loggedIn) {
             return history.push('/')
         }
-    }, [user.loggedIn])
+    }, [user.loggedIn, history])
 
 
     const handleSubmit = async e => {

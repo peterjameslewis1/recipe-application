@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FavouriteButton from '../Private/FavouriteButton'
 import { connect } from 'react-redux'
 
 
@@ -14,7 +13,7 @@ const Card = ({ data }) => {
             state: data
         }} >
             <div className="img">
-                <img src={data.image} alt="image of the cooked recipe" />
+                <img src={data.image} alt={data.title} />
             </div>
             <div className="results__item__text">
                 <h4 className="title">{data.title}</h4>

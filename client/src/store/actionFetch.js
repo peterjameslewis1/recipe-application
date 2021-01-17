@@ -1,4 +1,3 @@
-import axios from 'axios';
 const API_KEY = process.env.REACT_APP_API_KEY;
 export const FETCH_RECIPE_BEGIN = 'FETCH_RECIPE_BEGIN';
 export const FETCH_RECIPE_SUCCESS = 'FETCH_RECIPE_SUCCESS';

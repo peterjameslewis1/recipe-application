@@ -5,7 +5,6 @@ import {
     FETCH_SEARCH_RECIPE_SUCCESS,
     SET_CUISINE,
     FETCH_SIMILAR_RECIPES,
-    LOG_USER_OUT
 } from '../actionFetch'
 
 const initialState = {

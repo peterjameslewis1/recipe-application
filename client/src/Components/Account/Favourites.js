@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import RecipeCard from '../RecipieCard/RecipieCard';
 import { favouriveDetails } from '../../store/actionUser';
-
-import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from 'react-redux'
 import FavouriteButton from '../Private/FavouriteButton';
 
@@ -20,7 +18,7 @@ const FavouriteRecipes = ({ user, fetchData, data = [] }) => {
     }, [])
 
     return (
-        <div>
+        <div className="favourites">
             {loading
                 ?
                 <h4>Loading...</h4>

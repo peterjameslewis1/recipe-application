@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import useDebounce from './useDebounce';
 import { searchRecipeQuery } from '../../store/actionFetch';
 
 
 
-const AutoComplete = ({ searchRecipe, data = [] }) => {
+const AutoComplete = ({ searchRecipe }) => {
 
   // Search term
   const [query, setQuery] = useState('');
@@ -24,7 +23,7 @@ const AutoComplete = ({ searchRecipe, data = [] }) => {
       setIsSearching(false);
     }
   },
-    [debouncedSearchTerm] // Only call effect if debounced search term changes
+    [debouncedSearchTerm, query, searchRecipe] // Only call effect if debounced search term changes
   );
 
 

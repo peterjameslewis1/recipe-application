@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import profileImg from '../../img/profile-icon-9.png'

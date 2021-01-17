@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { similarRecipes, setFavouriteRecipe } from '../../store/actionFetch';
+import { similarRecipes } from '../../store/actionFetch';
 import Stats from '../Stats';
 import RecipieCard from '../RecipieCard/RecipieCard';
 import FavouriteButton from '../Private/FavouriteButton';
@@ -22,14 +22,14 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
         return () => {
             cancelled = true;
         }
-    }, [data.id])
+    }, [data.id, similarRecipes])
 
 
     return (
 
         <div className="single-recipe">
             <div className="img">
-                <img src={data.image} alt="image of the cooked recipe" />
+                <img src={data.image} alt={data.title} />
             </div>
             <Stats data={data} newPrice={newPrice} />
             <div className="title-container container">

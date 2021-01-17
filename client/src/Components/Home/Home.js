@@ -14,7 +14,7 @@ const Home = ({ data = [], fetchData }) => {
             getData()
         }
         return;
-    }, [data])
+    }, [data, fetchData])
 
 
 

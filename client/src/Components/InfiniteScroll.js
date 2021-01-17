@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { searchCuisine, fetchRandomRecipe } from '../store/actionFetch';
 import RecipeCard from './RecipieCard/RecipieCard'

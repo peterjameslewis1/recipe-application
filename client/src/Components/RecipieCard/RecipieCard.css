@@ -20,7 +20,7 @@
   position: absolute;
   z-index: 9999999;
   top: 5%;
-  right: 5%;
+  right: 7%;
   transform: translate(50%, -50%);
 }
 .results__item .favourite-button i {
