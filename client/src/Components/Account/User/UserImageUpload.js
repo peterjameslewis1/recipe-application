@@ -12,11 +12,11 @@ const UserImage = ({ user, newUserImage, setImage }) => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        console.log(file)
 
         if (file) {
             const fd = await new FormData()
             await fd.append('file', file)
+            await fd.append('id', user.user._id)
             await newUserImage(fd)
         }
         return;

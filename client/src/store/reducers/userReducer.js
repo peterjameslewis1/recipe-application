@@ -51,14 +51,14 @@ const userReducer = (state = initialState, action) => {
                 loading: action.payload.loading,
                 loggedIn: action.payload.loggedIn
             }
-        case SET_USER_IMAGE:
-            return {
-                ...state,
-                image: {
-                    fileName: action.payload.fileName,
-                    filePath: action.payload.filePath
-                }
-            }
+        // case SET_USER_IMAGE:
+        //     return {
+        //         ...state,
+        //         image: {
+        //             fileName: action.payload.fileName,
+        //             filePath: action.payload.filePath
+        //         }
+        //     }
         case FETCH_USER_FAILURE:
             return {
                 ...state,

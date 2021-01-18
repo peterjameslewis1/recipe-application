@@ -62,9 +62,6 @@ router.post('/login', async (req, res) => {
     const correctPass = await bcrypt.compare(req.body.password, user.password)
     if (!correctPass) return res.status(400).json({ "message": "Invalid password", "type": "login" })
 
-    const image = await req.body.image;
-    if (image) return updatedUser = User.findOneAndUpdate({ email: req.body.email }, { image: req.body.image }, { new: true })
-
     try {
         console.log(user)
         return res.status(200).json(user);
@@ -79,6 +76,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/upload', async (req, res) => {
     console.log(req.files)
+    console.log(req.body.id)
     const file = req.files?.file;
     if (req.files === null) {
         return await res.status(400).json({ msg: 'No file uploaded' });
@@ -87,10 +85,12 @@ router.post('/upload', async (req, res) => {
         return await res.status(400).json({ message: "File must be smaller than 7MB" })
     }
 
+
+    const updatedUser = await User.findOneAndUpdate({ _id: req.body.id }, { image: file.name }, { new: true })
+    console.log(updatedUser)
     const data = await fs.readdirSync(`${__dirname}/client/public/uploads`, { encoding: 'utf8' })
-    console.log(data)
     if (data.includes(file.name)) {
-        return res.send({ fileName: file.name, filePath: `/uploads/${file.name}` })
+        return res.json(updatedUser)
     }
 
     await file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
@@ -99,7 +99,7 @@ router.post('/upload', async (req, res) => {
             return res.status(500).send(err);
         }
     });
-    return res.send({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    return res.json(updatedUser);
 });
 
 

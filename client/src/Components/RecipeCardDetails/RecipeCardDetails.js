@@ -34,7 +34,6 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
             <Stats data={data} newPrice={newPrice} />
             <div className="title-container container">
                 <h2 className="title ">{data.title}
-                    {user.loggedIn ? <FavouriteButton id={data.id} /> : null}
                 </h2>
                 <p className="source">Recipe by <strong>{data.sourceName}</strong></p>
             </div>
@@ -50,10 +49,9 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
                     })}
                 </ul>
             </div>
-            <div className="single-recipe__features">
-                <div className="save-recipe" onClick={() => history.push('/account')}>
-                    {user.loggedIn ? <FavouriteButton id={data.id} /> : null}
-                    <i className="far fa-heart favourite"></i>Favourites</div>
+            <div className="single-recipe__features" onClick={user.loggedIn ? null : () => history.push('/account')}>
+                {user.loggedIn ? <FavouriteButton id={data.id} /> : null}
+                {user.user.favourites.includes(data.id) ? 'Remove' : 'Save'}
             </div>
 
             <div className="single-recipe__instructions list container">

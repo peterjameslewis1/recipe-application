@@ -38,6 +38,7 @@ input:focus {
 .account .file-upload,
 .dashboard .file-upload {
   text-align: left;
+  margin-top: 10px;
 }
 .account .file-upload input,
 .dashboard .file-upload input {
@@ -86,6 +87,16 @@ input:focus {
 .dashboard__user-info__logo img {
   width: 100%;
   border-radius: 10px;
+  display: block;
+}
+.account__user-info__logo i,
+.dashboard__user-info__logo i {
+  color: #00b5ad;
+  position: absolute;
+  left: -9px;
+  bottom: -10px;
+  font-size: 24px;
+  transition: all 0.5s;
 }
 .account h2,
 .dashboard h2 {

@@ -118,7 +118,7 @@ export const newUserImage = data => {
             }
         }).then(res => {
             console.log(res)
-            return dispatch(setUserImage(res.data))
+            return dispatch(fetchUserSuccess(res.data))
         }).catch(err => {
             console.log(err)
             console.log(err.response)
@@ -140,12 +140,7 @@ export const userDetails = data => {
         }).then(res => {
             async function setUser() {
                 console.log(res, "user data")
-                // const bulkRecipies = await favouriveDetails(res.data.favourites);
-                // console.log(bulkRecipies)
-                // const user = {
-                //     ...res.data,
-                //     // favouritesDetails: bulkRecipies
-                // }
+
                 await dispatch(fetchUserSuccess(res.data))
                 await dispatch(favouriveDetails(res.data.favourites))
 
