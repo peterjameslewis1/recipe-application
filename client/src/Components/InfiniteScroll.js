@@ -18,6 +18,9 @@ const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, 
                     <b>Yay! You have seen it all</b>
                 </p>
             }
+            pullDownToRefresh={true}
+            refreshFunction={fetchData}
+            pullDownToRefreshContent
         >
 
             <ul className="results">

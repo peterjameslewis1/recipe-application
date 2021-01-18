@@ -4,17 +4,14 @@ import { connect } from 'react-redux'
 
 import InfiniteScrollComponent from '../InfiniteScroll'
 
-const Home = ({ data = [], fetchData }) => {
+const Home = ({ fetchData }) => {
 
     useEffect(() => {
-        if (data.length < 1) {
-            async function getData() {
-                return fetchData()
-            }
-            getData()
+        async function getData() {
+            return fetchData()
         }
-        return;
-    }, [data, fetchData])
+        getData()
+    }, [])
 
 
 
