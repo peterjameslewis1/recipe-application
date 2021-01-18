@@ -42,6 +42,22 @@ input {
 
   .file-upload {
     text-align: left;
+    input {
+      margin: 5px 0 0 0;
+    }
+    &__btn {
+      display: flex;
+      justify-content: space-between;
+      button {
+        flex: 0 1 50%;
+      }
+      .submit {
+        border-radius: 0 0 0 7px;
+      }
+      .close {
+        border-radius: 0 0 7px 0;
+      }
+    }
   }
 
   &__user-info {
@@ -50,6 +66,7 @@ input {
     align-items: center;
 
     .back-btn {
+      flex: 0 1 15%;
       i {
         margin: 0 5px;
         font-size: 18px;
@@ -59,6 +76,8 @@ input {
 
     &__logo {
       flex: 0 1 15%;
+      position: relative;
+      z-index: 99999;
       img {
         width: 100%;
         border-radius: 10px;

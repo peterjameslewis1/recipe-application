@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         searchRecipe: (query, length) => dispatch(searchCuisine(query, length)),
-        fetchData: length => dispatch(fetchRandomRecipe(length))
+        fetchData: () => dispatch(fetchRandomRecipe())
     }
 }
 

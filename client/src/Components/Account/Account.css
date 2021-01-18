@@ -39,11 +39,36 @@ input:focus {
 .dashboard .file-upload {
   text-align: left;
 }
+.account .file-upload input,
+.dashboard .file-upload input {
+  margin: 5px 0 0 0;
+}
+.account .file-upload__btn,
+.dashboard .file-upload__btn {
+  display: flex;
+  justify-content: space-between;
+}
+.account .file-upload__btn button,
+.dashboard .file-upload__btn button {
+  flex: 0 1 50%;
+}
+.account .file-upload__btn .submit,
+.dashboard .file-upload__btn .submit {
+  border-radius: 0 0 0 7px;
+}
+.account .file-upload__btn .close,
+.dashboard .file-upload__btn .close {
+  border-radius: 0 0 7px 0;
+}
 .account__user-info,
 .dashboard__user-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.account__user-info .back-btn,
+.dashboard__user-info .back-btn {
+  flex: 0 1 15%;
 }
 .account__user-info .back-btn i,
 .dashboard__user-info .back-btn i {
@@ -54,6 +79,8 @@ input:focus {
 .account__user-info__logo,
 .dashboard__user-info__logo {
   flex: 0 1 15%;
+  position: relative;
+  z-index: 99999;
 }
 .account__user-info__logo img,
 .dashboard__user-info__logo img {

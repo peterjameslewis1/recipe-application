@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { newUserImage } from '../../../store/actionUser'
 import { connect } from 'react-redux'
 
-const UserImage = ({ user, newUserImage }) => {
+const UserImage = ({ user, newUserImage, setImage }) => {
     const [file, setFile] = useState('');
 
     const onChange = async e => {
@@ -14,15 +14,21 @@ const UserImage = ({ user, newUserImage }) => {
         e.preventDefault();
         console.log(file)
 
-        const fd = await new FormData()
-        await fd.append('file', file)
-        await newUserImage(fd)
+        if (file) {
+            const fd = await new FormData()
+            await fd.append('file', file)
+            await newUserImage(fd)
+        }
+        return;
     }
     return (
         <form onSubmit={onSubmit} className="file-upload" encType="multipart/form-data">
             <p>{user.error?.msg ? user.error.msg : ""}</p>
             <input type="file" onChange={onChange} />
-            <button type="submit">Upload</button>
+            <div className="file-upload__btn">
+                <button type="submit" className="submit">Upload</button>
+                <button className="close" onClick={() => setImage(false)}>Close</button>
+            </div>
         </form>
     );
 };
