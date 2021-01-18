@@ -89,12 +89,12 @@ router.post('/upload', async (req, res) => {
 
     const updatedUser = await User.findOneAndUpdate({ _id: req.body.id }, { image: fileName }, { new: true })
     console.log(updatedUser)
-    const data = await fs.readdirSync(`${__dirname}/client/public/uploads`, { encoding: 'utf8' })
+    const data = await fs.readdirSync(`${__dirname}/client/build/uploads`, { encoding: 'utf8' })
     if (data.includes(updatedUser.image)) {
         return res.json(updatedUser)
     }
 
-    await file.mv(`${__dirname}/client/public/uploads/${updatedUser.image}`, err => {
+    await file.mv(`${__dirname}/client/build/uploads/${updatedUser.image}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
