@@ -75,9 +75,8 @@ router.post('/login', async (req, res) => {
 
 
 router.post('/upload', async (req, res) => {
-    console.log(req.files)
-    console.log(req.body.id)
-    const file = req.files?.file;
+    const file = req.files.file;
+    console.log(file)
     if (req.files === null) {
         return await res.status(400).json({ msg: 'No file uploaded' });
     }
@@ -85,21 +84,27 @@ router.post('/upload', async (req, res) => {
         return await res.status(400).json({ message: "File must be smaller than 7MB" })
     }
 
+    // Changing file name so no spaces
+    const fileName = await file.name.replace(/ /g, '-');
 
-    const updatedUser = await User.findOneAndUpdate({ _id: req.body.id }, { image: file.name }, { new: true })
+    const updatedUser = await User.findOneAndUpdate({ _id: req.body.id }, { image: fileName }, { new: true })
     console.log(updatedUser)
     const data = await fs.readdirSync(`${__dirname}/client/public/uploads`, { encoding: 'utf8' })
-    if (data.includes(file.name)) {
+    if (data.includes(updatedUser.image)) {
         return res.json(updatedUser)
     }
 
-    await file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+    await file.mv(`${__dirname}/client/public/uploads/${updatedUser.image}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
         }
+        console.log('Thinking')
+        console.log('moved')
+        console.log('send')
+        return res.send(updatedUser);
     });
-    return res.json(updatedUser);
+
 });
 
 
