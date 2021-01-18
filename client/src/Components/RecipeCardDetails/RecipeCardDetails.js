@@ -12,6 +12,7 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
     const price = data.pricePerServing / 100;
     const newPrice = price.toFixed(2);
 
+    console.log(user)
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -51,7 +52,7 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
             </div>
             <div className="single-recipe__features" onClick={user.loggedIn ? null : () => history.push('/account')}>
                 {user.loggedIn ? <FavouriteButton id={data.id} /> : null}
-                {user.user.favourites.includes(data.id) ? 'Remove' : 'Save'}
+                {user.loggedIn ? user.user.favourites.includes(data.id) ? 'Remove' : 'Save' : 'Save'}
             </div>
 
             <div className="single-recipe__instructions list container">

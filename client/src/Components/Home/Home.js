@@ -14,9 +14,6 @@ const Home = ({ fetchData }) => {
     }, [])
 
 
-
-
-
     return (
         <div className="home">
             <InfiniteScrollComponent />
