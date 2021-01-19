@@ -10,13 +10,22 @@ const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, 
     return (
         <InfiniteScroll
             dataLength={data.length}
-            next={cuisine === '' ? () => fetchData() : () => searchRecipe(cuisine, data.length)}
+            next={cuisine === '' ? () => fetchData(data) : () => searchRecipe(cuisine, data.length)}
             hasMore={true}
             loader={<h4>Loading...</h4>}
             endMessage={
                 <p style={{ textAlign: "center" }}>
                     <b>Yay! You have seen it all</b>
                 </p>
+            }
+            refreshFunction={(data) => fetchData(data)}
+            pullDownToRefresh
+            pullDownToRefreshThreshold={50}
+            pullDownToRefreshContent={
+                <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+            }
+            releaseToRefreshContent={
+                <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
             }
         >
 
@@ -47,7 +56,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         searchRecipe: (query, length) => dispatch(searchCuisine(query, length)),
-        fetchData: () => dispatch(fetchRandomRecipe())
+        fetchData: (data) => dispatch(fetchRandomRecipe(data))
     }
 }
 

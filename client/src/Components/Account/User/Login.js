@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { userDetails, favouriveDetails } from '../../../store/actionUser';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 
 const Login = ({ userDetails, user, fetchData }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const history = useHistory();
 
     useEffect(() => {
         if (user.loggedIn) {
-            window.location.assign('/')
+            return history.push('/')
         }
     }, [user.loggedIn])
 

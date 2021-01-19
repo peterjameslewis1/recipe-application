@@ -37,14 +37,36 @@ export const setCuisine = cuisine => ({
 
 
 // Homepage fetch to populate landing page
-export const fetchRandomRecipe = () => {
+export const fetchRandomRecipe = (currentData) => {
+    console.log(currentData)
     return (dispatch) => {
         dispatch(fetchBegin())
         fetch(`https://api.spoonacular.com/recipes/random?number=20&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
-                const newData = data.recipes.filter(recipe => recipe !== null && recipe?.image !== undefined)
-                dispatch(fetchSuccess(newData))
+                console.log(currentData.length)
+
+                if (currentData.length > 1) {
+                    const allIds = currentData.map(data => data.id)
+                    console.log(allIds)
+                    const newIds = data.recipes.map(x => x.id)
+                    console.log(newIds)
+                    const idCheck = allIds.filter(id => newIds.includes(id))
+                    console.log(idCheck)
+
+
+                    const newData = data.recipes.filter(recipe => recipe !== null && recipe?.image !== undefined && !idCheck.includes(recipe.id))
+                    console.log(newData)
+                    dispatch(fetchSuccess(newData))
+                } else {
+                    console.log(data.recipes)
+                    dispatch(fetchSuccess(data.recipes))
+                }
+
+
+
+                // const arrayWithoutDuplicates = [...new Set(newData.map(recipe => recipe.id))]
+                // console.log(arrayWithoutDuplicates)
             })
             .catch(error => {
                 dispatch(fetchFailure(error))

@@ -4,14 +4,18 @@ import { connect } from 'react-redux'
 
 import InfiniteScrollComponent from '../InfiniteScroll'
 
-const Home = ({ fetchData }) => {
+const Home = ({ fetchData, data = [] }) => {
 
     useEffect(() => {
+
         async function getData() {
-            return fetchData()
+            return fetchData(data)
         }
         getData()
+
     }, [])
+    console.log(data)
+
 
 
     return (
@@ -29,7 +33,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchData: () => dispatch(fetchRandomRecipe()),
+        fetchData: data => dispatch(fetchRandomRecipe(data)),
     }
 }
 
