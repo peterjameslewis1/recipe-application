@@ -64,7 +64,7 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
                         null
                         :
                         <div className="method-steps">
-                            <h2>{step.name}</h2>
+                            <h3>{step.name}</h3>
                             <ul>
                                 {step.steps.map(x => <li key={x.number}>{x.step}</li>)}
                             </ul>

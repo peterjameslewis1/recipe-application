@@ -1,11 +1,11 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { searchCuisine, fetchRandomRecipe } from '../store/actionFetch';
+import { searchCuisine, fetchRandomRecipe, pullOnRefresh } from '../store/actionFetch';
 import RecipeCard from './RecipieCard/RecipieCard'
 import { connect } from 'react-redux';
 import FavouriteButton from '../Components/Private/FavouriteButton'
 
-const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, fetchData, cuisine, user }) => {
+const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, fetchData, cuisine, user, pullOnRefresh }) => {
 
     return (
         <InfiniteScroll
@@ -18,7 +18,7 @@ const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, 
                     <b>Yay! You have seen it all</b>
                 </p>
             }
-            refreshFunction={(data) => fetchData(data)}
+            refreshFunction={pullOnRefresh}
             pullDownToRefresh
             pullDownToRefreshThreshold={50}
             pullDownToRefreshContent={
@@ -56,7 +56,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         searchRecipe: (query, length) => dispatch(searchCuisine(query, length)),
-        fetchData: (data) => dispatch(fetchRandomRecipe(data))
+        fetchData: (data) => dispatch(fetchRandomRecipe(data)),
+        pullOnRefresh: () => dispatch(pullOnRefresh())
     }
 }
 

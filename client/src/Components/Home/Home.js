@@ -8,10 +8,12 @@ const Home = ({ fetchData, data = [] }) => {
 
     useEffect(() => {
 
-        async function getData() {
-            return fetchData(data)
+        if (data.length < 1) {
+            async function getData() {
+                return fetchData(data)
+            }
+            getData()
         }
-        getData()
 
     }, [])
     console.log(data)

@@ -6,6 +6,7 @@ export const FETCH_SIMILAR_RECIPES = 'FETCH_SIMILAR_RECIPES';
 export const FETCH_RECIPE_FAILURE = 'FETCH_RECIPE_FAILURE';
 export const SET_CUISINE = 'SET_CUISINE';
 export const LOG_USER_OUT = 'LOG_USER_OUT';
+export const REFRESH_RECIPES = 'REFRESH_RECIPES';
 
 
 export const fetchBegin = () => ({
@@ -32,41 +33,46 @@ export const setCuisine = cuisine => ({
     type: 'SET_CUISINE',
     payload: cuisine
 })
+export const refreshRecipes = () => ({
+    type: 'REFRESH_RECIPES',
+    payload: []
+})
 
 
+
+
+
+
+export const pullOnRefresh = () => {
+    return async dispatch => {
+        await dispatch(refreshRecipes())
+        await dispatch(fetchRandomRecipe([]))
+    }
+}
 
 
 // Homepage fetch to populate landing page
 export const fetchRandomRecipe = (currentData) => {
-    console.log(currentData)
     return (dispatch) => {
         dispatch(fetchBegin())
         fetch(`https://api.spoonacular.com/recipes/random?number=20&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
-                console.log(currentData.length)
 
                 if (currentData.length > 1) {
+                    // New array of all current recipe ids stored in Redux
                     const allIds = currentData.map(data => data.id)
-                    console.log(allIds)
+                    // New array of recipe ids fetched from API
                     const newIds = data.recipes.map(x => x.id)
-                    console.log(newIds)
+                    // Check to see if current recipe ids contain any of new fetched recipe ids
                     const idCheck = allIds.filter(id => newIds.includes(id))
-                    console.log(idCheck)
-
 
                     const newData = data.recipes.filter(recipe => recipe !== null && recipe?.image !== undefined && !idCheck.includes(recipe.id))
-                    console.log(newData)
                     dispatch(fetchSuccess(newData))
                 } else {
-                    console.log(data.recipes)
-                    dispatch(fetchSuccess(data.recipes))
+                    const newData = data.recipes.filter(recipe => recipe !== null && recipe?.image !== undefined)
+                    dispatch(fetchSuccess(newData))
                 }
-
-
-
-                // const arrayWithoutDuplicates = [...new Set(newData.map(recipe => recipe.id))]
-                // console.log(arrayWithoutDuplicates)
             })
             .catch(error => {
                 dispatch(fetchFailure(error))

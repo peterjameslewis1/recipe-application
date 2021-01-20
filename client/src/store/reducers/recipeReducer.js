@@ -5,6 +5,7 @@ import {
     FETCH_SEARCH_RECIPE_SUCCESS,
     SET_CUISINE,
     FETCH_SIMILAR_RECIPES,
+    REFRESH_RECIPES
 } from '../actionFetch'
 
 const initialState = {
@@ -33,7 +34,6 @@ const recipeReducer = (state = initialState, action) => {
                 loading: true,
                 error: null
             };
-
         case FETCH_RECIPE_SUCCESS:
             return {
                 ...state,
@@ -58,7 +58,15 @@ const recipeReducer = (state = initialState, action) => {
                 loading: false,
                 error: null
             }
+        case REFRESH_RECIPES:
+            return {
+                ...state,
+                data: action.payload,
+                loading: false,
+                error: null,
+                fetchSuccess: false
 
+            }
         case FETCH_RECIPE_FAILURE:
             return {
                 ...state,
