@@ -43,7 +43,6 @@ export const logUserOut = () => ({
 
 
 export const favouriveDetails = data => {
-    console.log(data)
     return async dispatch => {
         axios({
             method: "GET",
@@ -54,7 +53,7 @@ export const favouriveDetails = data => {
 
             })
             .catch(err => {
-                console.log(err)
+                fetchUserFailure(err.data)
             })
     }
 }
@@ -82,7 +81,6 @@ export const setFavouriteRecipe = data => {
 }
 
 export const deleteFavouriteRecipe = data => {
-    console.log(data)
     return async dispatch => {
         axios({
             method: 'POST',
@@ -92,13 +90,6 @@ export const deleteFavouriteRecipe = data => {
                 'Content-type': 'application/json'
             }
         })
-            .then(res => {
-                console.log(res.data)
-                async function setUser() {
-                    // await dispatch(fetchUserSuccess(res.data))
-                }
-                setUser()
-            })
             .catch((err) => {
                 fetchUserFailure(err.data)
             })
@@ -117,11 +108,8 @@ export const newUserImage = data => {
                 'Content-type': 'multipart/form-data'
             }
         }).then(res => {
-            console.log(res)
             return dispatch(fetchUserSuccess(res.data))
         }).catch(err => {
-            console.log(err)
-            console.log(err.response)
             return dispatch(fetchUserFailure(err.response.data))
         })
     }
@@ -139,8 +127,6 @@ export const userDetails = data => {
             }
         }).then(res => {
             async function setUser() {
-                console.log(res, "user data")
-
                 await dispatch(fetchUserSuccess(res.data))
                 await dispatch(favouriveDetails(res.data.favourites))
 
@@ -154,7 +140,6 @@ export const userDetails = data => {
 
 
 export const newUserDetails = data => {
-    console.log(data)
     return dispatch => {
         dispatch(fetchUserBegin())
         axios({

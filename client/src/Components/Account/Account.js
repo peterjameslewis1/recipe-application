@@ -16,8 +16,8 @@ const Account = ({ user }) => {
         <div className="account container">
             <div className="account__user-info">
                 <div className="back-btn" onClick={() => history.goBack()}><i className="fas fa-arrow-left"></i></div>
-                <h2>Sign up</h2>
             </div>
+            <h2>Sign up</h2>
             <Register user={user} />
             <Login user={user} />
         </div>

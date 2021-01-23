@@ -1,16 +1,26 @@
 import React from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { searchCuisine, fetchRandomRecipe, pullOnRefresh } from '../store/actionFetch';
+import { searchCuisine, fetchRandomRecipe, pullOnRefresh, searchRecipeQuery } from '../store/actionFetch';
 import RecipeCard from './RecipieCard/RecipieCard'
 import { connect } from 'react-redux';
 import FavouriteButton from '../Components/Private/FavouriteButton'
 
-const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, fetchData, cuisine, user, pullOnRefresh }) => {
+const InfiniteScrollComponent = ({ data = [], searchResults = [], searchCuisine, fetchData, cuisine, user, pullOnRefresh, query, searchQuery }) => {
+
+    const next = () => {
+        if (cuisine == '' && query === '') {
+            return fetchData(data)
+        }
+        else if (cuisine !== '') {
+            return searchCuisine(cuisine, searchResults.length)
+        }
+        return searchQuery(query, searchResults)
+    }
 
     return (
         <InfiniteScroll
-            dataLength={data.length}
-            next={cuisine === '' ? () => fetchData(data) : () => searchRecipe(cuisine, data.length)}
+            dataLength={searchResults.length > 1 ? searchResults.length : data.length}
+            next={() => next()}
             hasMore={true}
             loader={<h4>Loading...</h4>}
             endMessage={
@@ -30,7 +40,6 @@ const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, 
         >
 
             <ul className="results">
-
                 {
                     searchResults.length > 1
                         ?
@@ -48,6 +57,7 @@ const InfiniteScrollComponent = ({ data = [], searchResults = [], searchRecipe, 
 const mapStateToProps = state => {
     return {
         data: state.recipe.data,
+        query: state.recipe.query,
         searchResults: state.recipe.searchResults,
         cuisine: state.recipe.cuisine,
         user: state.user
@@ -55,7 +65,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        searchRecipe: (query, length) => dispatch(searchCuisine(query, length)),
+        searchCuisine: (cuisine, searchResults) => dispatch(searchCuisine(cuisine, searchResults)),
+        searchQuery: (query, currentData) => dispatch(searchRecipeQuery(query, currentData)),
         fetchData: (data) => dispatch(fetchRandomRecipe(data)),
         pullOnRefresh: () => dispatch(pullOnRefresh())
     }

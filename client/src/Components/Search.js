@@ -1,6 +1,6 @@
 import React from 'react';
 import AutoComplete from './autoComplete/autoComplete'
-import InfiniteScrollComponent from './InfiniteScroll';
+import InfiniteScrollComponent from './InfiniteScroll'
 import Cuisines from './Cuisines';
 
 

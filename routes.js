@@ -12,7 +12,6 @@ router.use(express.static(path.join(__dirname, '/client/public')))
 
 
 router.post('/register', async (req, res) => {
-    console.log(req.body)
 
     // Validation
     const { error } = await registerValidation(req.body)
@@ -42,11 +41,9 @@ router.post('/register', async (req, res) => {
 
     try {
         const newUser = await user.save();
-        console.log(newUser)
         return res.json(newUser);
     }
     catch (err) {
-        console.log(err)
         return res.status(400).send(err);
     }
 })
@@ -63,12 +60,9 @@ router.post('/login', async (req, res) => {
     if (!correctPass) return res.status(400).json({ "message": "Invalid password", "type": "login" })
 
     try {
-        console.log(user)
         return res.status(200).json(user);
     }
     catch (err) {
-        console.log('Error')
-        console.log(err)
         return res.status(400).send(err)
     }
 })
@@ -76,7 +70,6 @@ router.post('/login', async (req, res) => {
 
 router.post('/upload', async (req, res) => {
     const file = req.files.file;
-    console.log(file)
     if (req.files === null) {
         return await res.status(400).json({ msg: 'No file uploaded' });
     }
@@ -88,7 +81,6 @@ router.post('/upload', async (req, res) => {
     const fileName = await file.name.replace(/ /g, '-');
 
     const updatedUser = await User.findOneAndUpdate({ _id: req.body.id }, { image: fileName }, { new: true })
-    console.log(updatedUser)
     const data = await fs.readdirSync(`${__dirname}/client/build/uploads`, { encoding: 'utf8' })
     if (data.includes(updatedUser.image)) {
         return res.json(updatedUser)
@@ -96,12 +88,8 @@ router.post('/upload', async (req, res) => {
 
     await file.mv(`${__dirname}/client/build/uploads/${updatedUser.image}`, err => {
         if (err) {
-            console.error(err);
             return res.status(500).send(err);
         }
-        console.log('Thinking')
-        console.log('moved')
-        console.log('send')
         return res.send(updatedUser);
     });
 
@@ -109,7 +97,6 @@ router.post('/upload', async (req, res) => {
 
 
 router.post('/addfaveourite', async (req, res) => {
-    console.log(req.body)
     const id = req.body.id;
 
     if (req.body === null) {
@@ -127,14 +114,11 @@ router.post('/addfaveourite', async (req, res) => {
         }
     }, { new: true })
 
-    console.log(updatedUser)
     return res.status(200).json(updatedUser)
 });
 
 
 router.post('/deletefavourite', async (req, res) => {
-    console.log(req.body)
-    console.log('Delete Request')
     const id = req.body.id;
 
     if (req.body === null) {
@@ -147,7 +131,6 @@ router.post('/deletefavourite', async (req, res) => {
         }
     }, { new: true })
 
-    console.log(updatedUser)
     return await res.status(200).json(updatedUser)
 });
 

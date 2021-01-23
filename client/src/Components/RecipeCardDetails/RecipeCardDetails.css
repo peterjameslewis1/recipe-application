@@ -118,3 +118,8 @@
 .single-recipe .similar-recipes #similar li a .rating {
   color: gold;
 }
+@media screen and (min-width: 768px) {
+  .single-recipe .similar-recipes #similar li {
+    flex-basis: 30%;
+  }
+}

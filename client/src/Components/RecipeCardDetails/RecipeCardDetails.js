@@ -12,7 +12,6 @@ const RecipeCardDetails = ({ user, similarRecipes, similarData = [], location })
     const price = data.pricePerServing / 100;
     const newPrice = price.toFixed(2);
 
-    console.log(user)
 
     useEffect(() => {
         window.scrollTo(0, 0)

@@ -14,7 +14,6 @@ const DashBoard = ({ user }) => {
     const iconStyle = {
         transform: 'rotate(45deg)'
     }
-    console.log(user)
     return (
         <div className="dashboard container">
             <div className="account__user-info">

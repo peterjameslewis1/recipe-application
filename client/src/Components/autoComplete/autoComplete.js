@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import useDebounce from './useDebounce';
-import { searchRecipeQuery } from '../../store/actionFetch';
+import { searchRecipeQuery, refreshRecipes, setQuery } from '../../store/actionFetch';
 
 
 
-const AutoComplete = ({ searchRecipe }) => {
+const AutoComplete = ({ searchRecipe, resetResults, setQueryToStore, searchResults }) => {
 
   // Search term
   const [query, setQuery] = useState('');
@@ -13,15 +13,20 @@ const AutoComplete = ({ searchRecipe }) => {
   // Searching status (whether there is pending API request)
   const [isSearching, setIsSearching] = useState(false);
 
-  const debouncedSearchTerm = useDebounce(query, 500);
+  const debouncedSearchTerm = useDebounce(query, 1000);
+
+  const asyncAutoCompleteFuncs = async () => {
+    if (debouncedSearchTerm) {
+      await setQueryToStore(query)
+      await resetResults()
+      await setIsSearching(true);
+      await searchRecipe(query, searchResults)
+      await setIsSearching(false);
+    }
+  }
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-      searchRecipe(query)
-      console.log(query)
-      setIsSearching(false);
-    }
+    asyncAutoCompleteFuncs()
   },
     [debouncedSearchTerm, query, searchRecipe] // Only call effect if debounced search term changes
   );
@@ -38,12 +43,18 @@ const AutoComplete = ({ searchRecipe }) => {
     </div>
   );
 }
-
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    searchRecipe: query => dispatch(searchRecipeQuery(query))
+    searchResults: state.recipe.searchResults,
   }
 }
 
-export default connect(null, mapDispatchToProps)(AutoComplete);
+const mapDispatchToProps = dispatch => {
+  return {
+    searchRecipe: (query, currentData) => dispatch(searchRecipeQuery(query, currentData)),
+    resetResults: () => dispatch(refreshRecipes()),
+    setQueryToStore: query => dispatch(setQuery(query))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AutoComplete);

@@ -1,10 +1,12 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 export const FETCH_RECIPE_BEGIN = 'FETCH_RECIPE_BEGIN';
 export const FETCH_RECIPE_SUCCESS = 'FETCH_RECIPE_SUCCESS';
-export const FETCH_SEARCH_RECIPE_SUCCESS = 'FETCH_SEARCH_RECIPE_SUCCESS';
+export const FETCH_CUISINE_RECIPE_SUCCESS = 'FETCH_CUISINE_RECIPE_SUCCESS';
+export const FETCH_QUERY_RECIPE_SUCCESS = 'FETCH_QUERY_RECIPE_SUCCESS';
 export const FETCH_SIMILAR_RECIPES = 'FETCH_SIMILAR_RECIPES';
 export const FETCH_RECIPE_FAILURE = 'FETCH_RECIPE_FAILURE';
 export const SET_CUISINE = 'SET_CUISINE';
+export const SET_QUERY = 'SET_QUERY';
 export const LOG_USER_OUT = 'LOG_USER_OUT';
 export const REFRESH_RECIPES = 'REFRESH_RECIPES';
 
@@ -16,8 +18,12 @@ export const fetchSuccess = data => ({
     type: 'FETCH_RECIPE_SUCCESS',
     payload: data
 })
-export const fetchSearchSuccess = data => ({
-    type: 'FETCH_SEARCH_RECIPE_SUCCESS',
+export const fetchQuerySuccess = data => ({
+    type: 'FETCH_QUERY_RECIPE_SUCCESS',
+    payload: data
+})
+export const fetchCuisineSuccess = data => ({
+    type: 'FETCH_CUISINE_RECIPE_SUCCESS',
     payload: data
 })
 export const fetchSimilarRecipes = data => ({
@@ -32,6 +38,10 @@ export const fetchFailure = error => ({
 export const setCuisine = cuisine => ({
     type: 'SET_CUISINE',
     payload: cuisine
+})
+export const setQuery = query => ({
+    type: 'SET_QUERY',
+    payload: query
 })
 export const refreshRecipes = () => ({
     type: 'REFRESH_RECIPES',
@@ -82,16 +92,28 @@ export const fetchRandomRecipe = (currentData) => {
 //
 
 // Search page actonCreator to fetch bulk information on specific recipes
-export const searchRecipeQuery = query => {
+export const searchRecipeQuery = (query, currentData) => {
     return (dispatch) => {
         dispatch(fetchBegin())
-
         // Initial fetch to get id's
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?&query=${query}&apiKey=${API_KEY}`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?&query=${query}&number=${currentData.length + 10}&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const ids = data.results.map(result => result.id)
-                dispatch(searchRecipeDetails(ids))
+                searchRecipeDetails(ids).then(data => {
+                    if (currentData.length > 1) {
+                        // New array of all current recipe ids stored in Redux
+                        const allIds = currentData.map(data => data.id)
+                        // New array of recipe ids fetched from API
+                        const newIds = data.map(x => x.id)
+                        // Check to see if current recipe ids contain any of new fetched recipe ids
+                        const idCheck = allIds.filter(id => newIds.includes(id))
+
+                        const newData = data.filter(recipe => !idCheck.includes(recipe.id))
+                        return dispatch(fetchQuerySuccess(newData))
+                    }
+                    return dispatch(fetchQuerySuccess(data))
+                })
             })
             .catch(error => {
                 dispatch(fetchFailure(error))
@@ -101,17 +123,12 @@ export const searchRecipeQuery = query => {
 
 // Fetch call for the bulk details for each search query && cuisine search
 export const searchRecipeDetails = id => {
-    return dispatch => {
-        // Id's are passed to fetch bulk data
-        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
-            .then(res => res.json())
-            .then(data => {
-                dispatch(fetchSearchSuccess(data))
-            })
-            .catch(error => {
-                dispatch(fetchFailure(error))
-            })
-    }
+    // Id's are passed to fetch bulk data
+    return fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${id}&apiKey=${API_KEY}`)
+        .then(res => res.json())
+        .catch(error => {
+            return error;
+        })
 }
 //
 
@@ -134,15 +151,17 @@ export const similarRecipeDetails = id => {
 
 
 // Fetch call for search querys
-export const searchCuisine = (cuisine, length) => {
+export const searchCuisine = (cuisine, data) => {
     return dispatch => {
         dispatch(fetchBegin())
         // Initial fetch to get id's
-        fetch(`https://api.spoonacular.com/recipes/complexSearch?&cuisine=${cuisine}&number=${length + 10}&apiKey=${API_KEY}`)
+        fetch(`https://api.spoonacular.com/recipes/complexSearch?&cuisine=${cuisine}&number=${data + 10}&apiKey=${API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const ids = data.results.map(result => result.id)
-                dispatch(searchRecipeDetails(ids))
+                searchRecipeDetails(ids).then(data => {
+                    dispatch(fetchCuisineSuccess(data))
+                })
             })
             .catch(error => {
                 dispatch(fetchFailure(error))

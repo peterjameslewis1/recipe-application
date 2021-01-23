@@ -96,33 +96,20 @@
   color: black;
   text-decoration: none;
 }
-@media screen and (max-width: 350px) {
-  display: flex;
-  flex-wrap: wrap;
-  top: 70px;
-  a {
-    flex: 1 1 40%;
-  }
-  a .recipes .recipie-card {
-    margin-top: 0;
-  }
-  a .recipes .recipie-card-container__text {
-    flex-direction: column-reverse;
-    padding: 10px;
-    height: 100px;
+@media screen and (min-width: 768px) {
+  .results__item {
+    flex-basis: calc(33% - 5px);
   }
 }
-@media screen and (min-width: 768px) {
-  display: flex;
-  flex-wrap: wrap;
-  top: 50px;
-  a {
-    flex: 1 1 40%;
+@media screen and (min-width: 1000px) {
+  .results__item {
+    flex-basis: calc(25% - 10px);
   }
-  a .recipes .recipie-card {
-    margin-top: 0;
+  .results__item__text .title {
+    font-size: 16px;
   }
-  a .recipes .recipie-card-container {
-    height: 330px;
+  .results__item__scores i,
+  .results__item__scores span {
+    font-size: 14px;
   }
 }

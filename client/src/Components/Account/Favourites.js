@@ -11,7 +11,6 @@ const FavouriteRecipes = ({ user, fetchData, data = [] }) => {
     useEffect(() => {
         async function getRecipes() {
             await fetchData(user.user.favourites)
-            console.log('fetch')
             await setLoading(false)
         }
         getRecipes()
