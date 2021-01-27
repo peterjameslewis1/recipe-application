@@ -10,14 +10,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Home = ({ fetchData, data = [], pullOnRefresh, user }) => {
 
     useEffect(() => {
-
         if (data.length < 1) {
             async function getData() {
                 return fetchData(data)
             }
             getData()
         }
-
     }, [])
 
 

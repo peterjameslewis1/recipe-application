@@ -22,7 +22,6 @@ const initialState = {
 
 
 const recipeReducer = (state = initialState, action) => {
-    console.log(action.type, action.payload)
     switch (action.type) {
         case SET_CUISINE:
             return {

@@ -1,4 +1,4 @@
-import { FETCH_USER_BEGIN, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, LOG_USER_OUT, SET_USER_ON_RELOAD, SET_USER_IMAGE, SET_USER_FAVOURITES__DETAILS, SET_USER_FAVOURITES__ID } from '../actionUser';
+import { FETCH_USER_BEGIN, FETCH_USER_SUCCESS, FETCH_USER_FAILURE, LOG_USER_OUT, SET_USER_ON_RELOAD, SET_USER_FAVOURITES__DETAILS, SET_USER_FAVOURITES__ID } from '../actionUser';
 
 const initialState = {
     user: {
@@ -51,14 +51,6 @@ const userReducer = (state = initialState, action) => {
                 loading: action.payload.loading,
                 loggedIn: action.payload.loggedIn
             }
-        // case SET_USER_IMAGE:
-        //     return {
-        //         ...state,
-        //         image: {
-        //             fileName: action.payload.fileName,
-        //             filePath: action.payload.filePath
-        //         }
-        //     }
         case FETCH_USER_FAILURE:
             return {
                 ...state,

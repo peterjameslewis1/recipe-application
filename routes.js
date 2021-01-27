@@ -70,12 +70,6 @@ router.post('/login', async (req, res) => {
 
 router.post('/upload', async (req, res) => {
     const file = req.files.file;
-    if (req.files === null) {
-        return await res.status(400).json({ msg: 'No file uploaded' });
-    }
-    if (file.size > 7000000) {
-        return await res.status(400).json({ message: "File must be smaller than 7MB" })
-    }
 
     // Changing file name so no spaces
     const fileName = await file.name.replace(/ /g, '-');

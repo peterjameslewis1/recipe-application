@@ -150,7 +150,6 @@ export const newUserDetails = data => {
                 'Content-type': 'application/json'
             }
         }).then(res => {
-            console.log(res)
             const userData = {
                 ...data,
                 ...res.data
@@ -163,13 +162,11 @@ export const newUserDetails = data => {
                     'Content-type': 'application/json'
                 }
             }).then(res => {
-                console.log(res)
                 return dispatch(fetchUserSuccess(res.data))
             }).catch(err => {
                 return dispatch(fetchUserFailure(err.response.data.message))
             })
         }).catch(err => {
-            console.log(err)
             return dispatch(fetchUserFailure(err.response.data.message))
         })
     }
