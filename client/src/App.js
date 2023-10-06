@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Favourites from './Components/Account/Favourites';
 
-
+console.log('process.env.REACT_APP_API_KEY', process.env.REACT_APP_API_KEY)
 const App = () => {
 
   return (

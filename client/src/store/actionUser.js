@@ -126,6 +126,7 @@ export const userDetails = data => {
                 'Content-type': 'application/json'
             }
         }).then(res => {
+            console.log('res', res)
             async function setUser() {
                 await dispatch(fetchUserSuccess(res.data))
                 await dispatch(favouriveDetails(res.data.favourites))

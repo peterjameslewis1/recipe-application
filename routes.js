@@ -12,13 +12,15 @@ router.use(express.static(path.join(__dirname, '/client/public')))
 
 
 router.post('/register', async (req, res) => {
+    console.log('req', req.body)
 
     // Validation
-    const { error } = await registerValidation(req.body)
-    if (error) return res.status(400).json({ "message": error.details[0].message, "type": "register" })
+    // const { error } = await registerValidation(req.body)
+    // if (error) return res.status(400).json({ "message": error.details[0].message, "type": "register" })
 
     // Checking if email already exists
     const emailExists = await User.findOne({ email: req.body.email })
+    console.log('emailExists', emailExists)
     if (emailExists) return res.status(400).json({
         "message": "Email already exists",
         "type": "register"
@@ -52,10 +54,12 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/login', async (req, res) => {
-
+    console.log('req', req.body)
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).json({ "message": "Email or password is wrong", "type": "login" });
-
+    console.log('user', user)
+    if (!user) {
+        return await (res.status(400).json({ "message": "Email already exists", "type": "login" }))
+    }
     const correctPass = await bcrypt.compare(req.body.password, user.password)
     if (!correctPass) return res.status(400).json({ "message": "Invalid password", "type": "login" })
 

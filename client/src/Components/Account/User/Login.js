@@ -7,7 +7,7 @@ const Login = ({ userDetails, user, fetchData }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const history = useHistory();
-
+    console.log('user', user)
     useEffect(() => {
         if (user.loggedIn) {
             return history.push('/')
@@ -17,7 +17,7 @@ const Login = ({ userDetails, user, fetchData }) => {
     const handleSubmit = async e => {
         e.preventDefault();
         await userDetails({ email, password })
-        await fetchData(user.user.favourites)
+        // await fetchData(user.user.favourites)
     }
 
 

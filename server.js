@@ -11,7 +11,7 @@ const routes = require('./routes')
 
 
 // Connecting to MongoDB
-mongoose.connect(process.env.DB_CONNECT,
+mongoose.connect(process.env.REACT_APP_DB_CONNECT,
     { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, },
     () => {
         console.log('connected to DB')
